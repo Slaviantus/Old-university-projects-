@@ -21,7 +21,17 @@ void Merkoff::add()
 	cin >> patient->date[1];
 	cout << "Year: ";
 	cin >> patient->date[2];
-
+	patient->next = NULL;
+	if (head == NULL)
+	{
+		head = patient;
+		tail = patient;
+	}
+	else
+	{
+		tail->next = patient;
+		tail = patient;
+	}
 }
 
 
