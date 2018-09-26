@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
 
 using namespace std;
 
