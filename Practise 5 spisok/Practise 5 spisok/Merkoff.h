@@ -10,7 +10,7 @@ using namespace std;
 
 struct Patients
 {
-	string name;
+	char name[20];
 	string zodiak;
 	int date[3];
 	Patients *next;
