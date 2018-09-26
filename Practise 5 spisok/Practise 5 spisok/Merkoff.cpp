@@ -1,10 +1,11 @@
 #include "stdafx.h"
-#include <iostream>
-#include <string>
+#include "iostream"
+#include "String"
 #include "Merkoff.h"
 #include "cstdio"
 #include "cstring"
 #include "cstdlib"
+#include "conio.h"
 
 using namespace std;
 
@@ -19,7 +20,11 @@ void Merkoff::add()
 	Patients *patient = new Patients;
 
 	cout << "Enter the name of patient" << endl;
-	cin >> patient->name;
+	//cin >> patient->name;
+	//cin.get();
+	//getline(cin, patient->name);
+	gets_s(patient->name);
+	cout << endl;
 	cout << "Enter the patient's birth date: " << endl;
 	cout << "Day: ";
 	cin >> patient->date[0];
@@ -40,6 +45,15 @@ void Merkoff::add()
 	{
 		tail->next = patient;
 		tail = patient;
+	}
+}
+
+void Merkoff::progon()
+{
+	while (tail->next != NULL)
+	{
+		//cout << tail->name << endl;
+		getline(cout, tail->name);
 	}
 }
 

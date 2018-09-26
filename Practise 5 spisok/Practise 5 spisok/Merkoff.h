@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>
-#include <string>
+#include "stdafx.h"
+#include "iostream"
+#include "String"
 #include "cstdio"
 #include "cstring"
 #include "cstdlib"
@@ -21,6 +22,7 @@ class Merkoff
 public:
 	Merkoff();
 	void add();
+	void progon();
 	~Merkoff();
 };
 
