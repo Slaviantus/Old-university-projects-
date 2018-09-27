@@ -19,9 +19,10 @@ class Merkoff
 {
 	Patients *head;
 	Patients *tail;
+	bool zodiaksign(Patients *ukazatel);
 public:
 	Merkoff();
-	void add();
+	bool add();
 	void progon();
 	~Merkoff();
 };
