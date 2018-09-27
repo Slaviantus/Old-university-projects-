@@ -20,10 +20,13 @@ class Merkoff
 	Patients *head;
 	Patients *tail;
 	bool zodiaksign(Patients *ukazatel);
+	void search(int month);
+	void show(Patients *ukazatel);
 public:
 	Merkoff();
 	bool add();
 	void progon();
+	void Entermonth();
 	~Merkoff();
 };
 

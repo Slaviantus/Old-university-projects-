@@ -60,15 +60,24 @@ bool Merkoff::add()
 	}
 }
 
+
 void Merkoff::progon()
 {
 	Patients *ukazatel = head;
 	while (ukazatel != NULL)
 	{
-		cout << ukazatel->name << endl;
-		cout << ukazatel->zodiak << endl;
-		ukazatel = ukazatel->next;
+		//cout << ukazatel->name << endl;
+		//cout << ukazatel->zodiak << endl;
+		//ukazatel = ukazatel->next;
 	}
+}
+
+void Merkoff::Entermonth()
+{
+	int month;
+	cout << "Enter number of month:" << endl;
+	cin >> month;
+	search(month);
 }
 
 bool Merkoff::zodiaksign(Patients *ukazatel)
@@ -283,13 +292,28 @@ bool Merkoff::zodiaksign(Patients *ukazatel)
 	return true;
 }
 
+void Merkoff::search(int month)
+{
+	Patients *ukazatel = head;
+	cout << "Patients who were born in this month" << endl;
+	while (ukazatel != NULL)
+	{
+		if (ukazatel->date[1] == month)
+		{
+			show(ukazatel);
+		}
+		ukazatel = ukazatel->next;
+	}
 
+}
 
-
-
-
-
-
+void Merkoff::show(Patients *ukazatel)
+{
+	cout << "==============================" << endl;
+	cout << "Name: " << ukazatel->name << endl;
+	cout << "Birth date: " << ukazatel->date[0] << "." << ukazatel->date[1] << "." << ukazatel->date[2] << endl;
+	cout << "Zodiak sign: " << ukazatel->zodiak;
+}
 
 Merkoff::~Merkoff()
 {
