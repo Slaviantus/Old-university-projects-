@@ -22,10 +22,10 @@ class Merkoff
 	bool zodiaksign(Patients *ukazatel);
 	void search(int month);
 	void show(Patients *ukazatel);
+	void kill();
 public:
 	Merkoff();
 	bool add();
-	void progon();
 	void Entermonth();
 	~Merkoff();
 };

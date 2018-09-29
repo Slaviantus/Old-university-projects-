@@ -60,18 +60,6 @@ bool Merkoff::add()
 	}
 }
 
-
-void Merkoff::progon()
-{
-	Patients *ukazatel = head;
-	while (ukazatel != NULL)
-	{
-		//cout << ukazatel->name << endl;
-		//cout << ukazatel->zodiak << endl;
-		//ukazatel = ukazatel->next;
-	}
-}
-
 void Merkoff::Entermonth()
 {
 	int month;
@@ -315,6 +303,19 @@ void Merkoff::show(Patients *ukazatel)
 	cout << "Zodiak sign: " << ukazatel->zodiak;
 }
 
+void Merkoff::kill()
+{
+	while (head != NULL)
+	{
+		Patients *ukazatel = head;
+		head = head->next;
+		cout << "Exterminate: " << ukazatel << endl;
+		delete ukazatel;
+	}
+}
+
+
 Merkoff::~Merkoff()
 {
+	kill();
 }
