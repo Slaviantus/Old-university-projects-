@@ -23,10 +23,11 @@ class Merkoff
 	void search(int month);
 	void show(Patients *ukazatel);
 	void kill();
-public:
-	Merkoff();
 	bool add();
 	void Entermonth();
+public:
+	Merkoff();
+	void menu();
 	~Merkoff();
 };
 

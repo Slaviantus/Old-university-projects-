@@ -16,6 +16,8 @@ Merkoff::Merkoff()
 	tail = NULL;
 }
 
+
+
 bool Merkoff::add()
 {
 	Patients *patient = new Patients;
@@ -305,6 +307,7 @@ void Merkoff::show(Patients *ukazatel)
 
 void Merkoff::kill()
 {
+
 	while (head != NULL)
 	{
 		Patients *ukazatel = head;
@@ -312,6 +315,46 @@ void Merkoff::kill()
 		cout << "Exterminate: " << ukazatel << endl;
 		delete ukazatel;
 	}
+}
+
+
+
+
+void Merkoff::menu()
+{
+	cout << "==========  Merkoff patients data  ==========" << endl;
+	cout << "Add patient ---------- 1" << endl;
+	bool work = true;
+	int button = 0;
+	while (work)
+	{
+			cout << "Add patient ---------- 1" << endl;
+			cout << "Delete patient ------- 2" << endl;
+			cout << "Search by month ------ 3" << endl;
+			cout << "Exit------------------ 4" << endl;
+			cin >> button;
+			switch (button)
+			{
+			case 1:
+			{
+				add();
+			}
+			case 2:
+			{
+
+			}
+			case 3:
+			{
+				Entermonth();
+			}
+			case 4:
+			{
+				work = false;
+			}
+
+			}
+	}
+	
 }
 
 
