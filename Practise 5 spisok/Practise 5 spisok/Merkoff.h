@@ -25,6 +25,8 @@ class Merkoff
 	void kill();
 	bool add();
 	void Entermonth();
+	void Del(Patients *ukazatel);
+	void showall();
 public:
 	Merkoff();
 	void menu();

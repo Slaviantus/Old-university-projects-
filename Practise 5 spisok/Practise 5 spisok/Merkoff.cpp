@@ -23,7 +23,8 @@ bool Merkoff::add()
 	Patients *patient = new Patients;
 
 	cout << "Enter the name of patient" << endl;
-	gets_s(patient->name);
+	//gets_s(patient->name);
+	cin >> patient->name;
 	cout << endl;
 	cout << "Enter the patient's birth date: " << endl;
 	cout << "Day: ";
@@ -54,6 +55,10 @@ bool Merkoff::add()
 	while (getchar() != '\n');
 	if (zodiaksign(patient))
 	{
+		cout << "============================================" << endl;
+		cout << "         The Patient has been added         " << endl;
+		show(patient);
+		cout << "============================================" << endl;
 		return true;
 	}
 	else
@@ -68,6 +73,35 @@ void Merkoff::Entermonth()
 	cout << "Enter number of month:" << endl;
 	cin >> month;
 	search(month);
+}
+
+void Merkoff::Del(Patients *ukazatel)
+{
+	Patients *zapas = ukazatel;
+	ukazatel = head;
+	while (ukazatel != NULL)
+	{
+		if (ukazatel->next == zapas)
+		{
+			ukazatel->next = zapas->next;
+			delete zapas;
+			break;
+		}
+		ukazatel = ukazatel->next;
+	}
+
+}
+
+void Merkoff::showall()
+{
+	Patients *ukazatel = head;
+	cout << "All Patients" << endl;
+	while (ukazatel != NULL)
+	{
+		cout << "---------------------------------" << endl;
+		show(ukazatel);
+		ukazatel = ukazatel->next;
+	}
 }
 
 bool Merkoff::zodiaksign(Patients *ukazatel)
@@ -302,7 +336,10 @@ void Merkoff::show(Patients *ukazatel)
 	cout << "==============================" << endl;
 	cout << "Name: " << ukazatel->name << endl;
 	cout << "Birth date: " << ukazatel->date[0] << "." << ukazatel->date[1] << "." << ukazatel->date[2] << endl;
-	cout << "Zodiak sign: " << ukazatel->zodiak;
+	cout << "Zodiak sign: " << ukazatel->zodiak << endl;
+	cout << "This adress: " << ukazatel << endl;
+	cout << ukazatel->next << endl;
+	cout << "==============================" << endl;
 }
 
 void Merkoff::kill()
@@ -312,7 +349,6 @@ void Merkoff::kill()
 	{
 		Patients *ukazatel = head;
 		head = head->next;
-		cout << "Exterminate: " << ukazatel << endl;
 		delete ukazatel;
 	}
 }
@@ -323,38 +359,95 @@ void Merkoff::kill()
 void Merkoff::menu()
 {
 	cout << "==========  Merkoff patients data  ==========" << endl;
-	cout << "Add patient ---------- 1" << endl;
-	bool work = true;
 	int button = 0;
+	bool work = true;
+	bool check = true;
+	while (check)
+	{
+		cout << "Add patient ---------- 1" << endl;
+		cout << "Exit------------------ 2" << endl;
+		cin >> button;
+		switch (button)
+		{
+		case 1:
+		{
+			if (add())
+			{
+				check = false;
+			}
+			break;
+		}
+		case 2:
+		{
+			work = false;
+		}
+		}
+	}
+	button = 0;
 	while (work)
 	{
-			cout << "Add patient ---------- 1" << endl;
-			cout << "Delete patient ------- 2" << endl;
-			cout << "Search by month ------ 3" << endl;
-			cout << "Exit------------------ 4" << endl;
-			cin >> button;
-			switch (button)
+		cout << "Add patient ---------- 1" << endl;
+		cout << "Delete patient ------- 2" << endl;
+		cout << "Search by month ------ 3" << endl;
+		cout << "Show all patients ---- 4" << endl;
+		cout << "Exit------------------ 5" << endl;
+		cin >> button;
+		switch (button)
+		{
+		case 1:
+		{
+			add();
+			break;
+		}
+		case 2:
+		{
+			Patients *ukazatel = head;
+			string entername;
+			bool find = false;
+			while (ukazatel != NULL)
 			{
-			case 1:
-			{
-				add();
+				cout << ukazatel->name << endl;
+				ukazatel = ukazatel->next;
 			}
-			case 2:
+			cout << "---------------------------------------" << endl;
+			cout << "Enter the name which you want to delete" << endl;
+			cin >> entername;
+			ukazatel = head;
+			while (ukazatel != NULL)
 			{
+				if (entername == ukazatel->name)
+				{
+					Del(ukazatel);
+					find = true;
+					break;
+				}
+				ukazatel = ukazatel->next;
+			}
+			if (!find)
+			{
+				cout << "There is no patient" << endl;
+			}
+			break;
+		}
+		case 3:
+		{
+			Entermonth();
+			break;
+		}
+		case 4:
+		{
+			showall();
+			break;
+		}
+		case 5:
+		{
+			work = false;
+			break;
+		}
 
-			}
-			case 3:
-			{
-				Entermonth();
-			}
-			case 4:
-			{
-				work = false;
-			}
-
-			}
+		}
 	}
-	
+
 }
 
 
@@ -362,3 +455,4 @@ Merkoff::~Merkoff()
 {
 	kill();
 }
+
