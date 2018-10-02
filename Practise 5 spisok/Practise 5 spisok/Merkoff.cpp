@@ -81,8 +81,21 @@ void Merkoff::Del(Patients *ukazatel)
 	ukazatel = head;
 	while (ukazatel != NULL)
 	{
+		if (ukazatel == zapas)
+		{
+			head = zapas->next;
+			delete zapas;
+			break;
+		}
 		if (ukazatel->next == zapas)
 		{
+			if (zapas->next == NULL)
+			{
+				ukazatel->next = NULL;
+				tail = ukazatel;
+				delete zapas;
+				break;
+			}
 			ukazatel->next = zapas->next;
 			delete zapas;
 			break;
