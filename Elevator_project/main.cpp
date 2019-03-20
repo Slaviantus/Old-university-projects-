@@ -11,6 +11,11 @@
 #include <QScrollArea>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QLabel>
+#include <QImage>
+#include <QPixmap>
+#include <gview.h>
+#include <gscene.h>
 using namespace std;
 
 
@@ -18,25 +23,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-//    time_again u;
-//    workplace *pwin = new workplace;
-//    pwin->setdata(100, 100, 100, 300);
-//    QToolBar *tbar = new QToolBar;
-//    MainWindow w;
-//    QHBoxLayout *layout = new QHBoxLayout;
-//    layout->addWidget(tbar);
-//    layout->addWidget(tbar)
-
-   //w.show();
-    floors *k = new floors;
-    //QGraphicsScene *l = new QGraphicsScene;
-    QScrollArea *scroll = new QScrollArea;
-    scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    scroll->setBackgroundRole(QPalette::Dark);
-    k->update();
-    scroll->setWidget(k);
-    scroll->takeWidget()->show();
-    //scroll->show();
+    GScene gs;
+    gs.resize(1100, 900); // задаёт фиксированный размер без скролов
+    gs.show();
     return a.exec();
 }
 

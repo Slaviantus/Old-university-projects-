@@ -29,13 +29,17 @@ SOURCES += \
         mainwindow.cpp \
     time_again.cpp \
     workplace.cpp \
-    floors.cpp
+    floors.cpp \
+    gscene.cpp \
+    gview.cpp
 
 HEADERS += \
         mainwindow.h \
     time_again.h \
     workplace.h \
-    floors.h
+    floors.h \
+    gscene.h \
+    gview.h
 
 FORMS += \
         mainwindow.ui
