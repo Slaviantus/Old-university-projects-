@@ -31,7 +31,8 @@ SOURCES += \
     workplace.cpp \
     floors.cpp \
     gscene.cpp \
-    gview.cpp
+    gview.cpp \
+    floor.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     workplace.h \
     floors.h \
     gscene.h \
-    gview.h
+    gview.h \
+    floor.h
 
 FORMS += \
         mainwindow.ui

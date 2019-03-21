@@ -6,7 +6,7 @@ using namespace std;
 
 Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор графического представления
 {
-    scene = new QGraphicsScene(0, 0, 1000, 800, this);
+    scene = new QGraphicsScene(0, 0, 741, 1000, this);
     scene->addRect(scene->sceneRect());//рисуем прямоугольник границы сцены
     setScene(scene);
 
@@ -21,5 +21,7 @@ Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор г�
 
 void Gview::myTimerRect()
 {
-  //qDebug() << "Exterminate!!!" << endl;
+  static int i = 0;
+  i++;
+  rectItem->setPos(i,0);
 }
