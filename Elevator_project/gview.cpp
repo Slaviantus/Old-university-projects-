@@ -20,9 +20,7 @@ Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор г�
     rectItem->setBrush(Qt::green);//заливка объекта
     scene->addItem(rectItem);
     Floor *fl = new Floor;
-    scene->addItem(fl);
-
-
+    scene->addItem(fl->Getgroup());
     }
 
 void Gview::myTimerRect()
