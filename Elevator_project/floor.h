@@ -3,9 +3,12 @@
 #include "QGraphicsRectItem"
 #include "QGraphicsItemGroup"
 #include "QPen"
+#include "QTimer"
+#include "QObject"
 
-class Floor
+class Floor : public QObject
 {
+    Q_OBJECT
 public:
     Floor();
     void drawfloor();
@@ -28,6 +31,11 @@ private:
     QRect rightdoorrect;
     QRect leftdoorrect;
     QRect backgroundrect;
+    void doors();
+    QTimer* doorstimer;
+private slots:
+    void Opendoors();
+    int i;
 };
 
 #endif // FLOOR_H
