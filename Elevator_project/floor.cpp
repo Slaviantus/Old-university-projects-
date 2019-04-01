@@ -52,22 +52,27 @@ Floor::Floor()
     leftdoor->setRect(leftdoorrect);
     leftdoor->setPos(280, 30);
     leftdoor->setZValue(-1);
-    rightdoor = new QGraphicsRectItem;
-    rightdoor->setPen(floorpen);
-    rightdoor->setBrush(Qt::green);
-    rightdoorrect.setHeight(170);
-    rightdoorrect.setWidth(30);
-    rightdoor->setRect(rightdoorrect);
-    rightdoor->setPos(371, 30);
-    rightdoor->setZValue(-1);
+//    rightdoor = new QGraphicsRectItem;
+//    rightdoor->setPen(floorpen);
+//    rightdoor->setBrush(Qt::green);
+//    rightdoorrect.setHeight(170);
+//    rightdoorrect.setWidth(30);
+//    rightdoor->setRect(rightdoorrect);
+//    rightdoor->setPos(371, 30);
+//    rightdoor->setZValue(-1);
 
+    QGraphicsPixmapItem *rightdoorpix = new QGraphicsPixmapItem;
+    rightdoorpix->setPos(371, 30);
+    QPixmap pixmap(":/textures/images/right_door.png");
+    rightdoorpix->setPixmap(pixmap);
     floorgroup = new QGraphicsItemGroup;
     floorgroup->addToGroup(plate);
     floorgroup->addToGroup(leftwall);
     floorgroup->addToGroup(rightwall);
     floorgroup->addToGroup(beam);
     floorgroup->addToGroup(leftdoor);
-    floorgroup->addToGroup(rightdoor);
+    //floorgroup->addToGroup(rightdoor);
+    floorgroup->addToGroup(rightdoorpix);
     floorgroup->setPos(0,500);
 
     this->doors();
