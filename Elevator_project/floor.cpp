@@ -3,6 +3,8 @@
 #include "QGraphicsItem"
 #include "QRect"
 #include "QTimer"
+#include "QGraphicsPixmapItem"
+#include "QPixmap"
 
 using namespace std;
 
@@ -54,7 +56,7 @@ Floor::Floor()
     rightdoor->setPen(floorpen);
     rightdoor->setBrush(Qt::green);
     rightdoorrect.setHeight(170);
-    rightdoorrect.setWidth(90);
+    rightdoorrect.setWidth(30);
     rightdoor->setRect(rightdoorrect);
     rightdoor->setPos(371, 30);
     rightdoor->setZValue(-1);
@@ -67,11 +69,13 @@ Floor::Floor()
     floorgroup->addToGroup(leftdoor);
     floorgroup->addToGroup(rightdoor);
     floorgroup->setPos(0,500);
+
     this->doors();
 }
 
 void Floor::drawfloor()
 {
+
 
 }
 

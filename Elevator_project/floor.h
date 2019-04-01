@@ -5,10 +5,11 @@
 #include "QPen"
 #include "QTimer"
 #include "QObject"
+#include "QGraphicsItem"
 
 class Floor : public QObject
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     Floor();
     void drawfloor();
