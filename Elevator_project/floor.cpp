@@ -18,39 +18,35 @@ Floor::Floor()
     point_right_door.setY(30);
     point_left_door.setX(342);
     point_left_door.setY(30);
+    point_right_wall.setX(400);
+    point_right_wall.setY(0);
+    point_left_wall.setX(1);
+    point_left_wall.setY(0);
+    point_beam.setX(342);
+    point_beam.setY(0);
+    point_plate.setX(0);
+    point_plate.setY(200);
 
-    plate = new QGraphicsRectItem;
-    plate->setPen(floorpen);
-    plate->setBrush(Qt::green);
-    platerect.setWidth(741);
-    platerect.setHeight(20);
-    plate->setRect(platerect);
+    plate = new QGraphicsPixmapItem;
     plate->setPos(point_plate);
     plate->setZValue(0);
-    rightwall = new QGraphicsRectItem;
-    rightwall->setPen(floorpen);
-    rightwall->setBrush(Qt::green);
+    plate_pixmap.load(":/textures/images/plate.png");
+    plate->setPixmap(plate_pixmap);
+    rightwall = new QGraphicsPixmapItem;
     rightwall->setZValue(0);
-    rightwall->setPos(461, 0);
-    rightwallrect.setHeight(200);
-    rightwallrect.setWidth(280);
-    rightwall->setRect(rightwallrect);
-    leftwall = new QGraphicsRectItem;
-    leftwall->setPen(floorpen);
-    leftwall->setBrush(Qt::green);
-    leftwallrect.setWidth(280);
-    leftwallrect.setHeight(200);
-    leftwall->setRect(leftwallrect);
-    leftwall->setPos(0,0);
+    rightwall->setPos(point_right_wall);
+    right_wall_pixmap.load(":/textures/images/right_wall.png");
+    rightwall->setPixmap(right_wall_pixmap);
+    leftwall = new QGraphicsPixmapItem;
+    leftwall->setPos(point_left_wall);
     leftwall->setZValue(0);
-    beam = new QGraphicsRectItem;
-    beam->setPen(floorpen);
-    beam->setBrush(Qt::green);
-    beamrect.setHeight(30);
-    beamrect.setWidth(181);
-    beam->setRect(beamrect);
-    beam->setPos(280, 0);
+    left_wall_pixmap.load(":/textures/images/left_wall.png");
+    leftwall->setPixmap(left_wall_pixmap);
+    beam = new QGraphicsPixmapItem;
+    beam->setPos(point_beam);
     beam->setZValue(0);
+    beam_pixmap.load(":/textures/images/beam.png");
+    beam->setPixmap(beam_pixmap);
     leftdoor = new QGraphicsPixmapItem;
     leftdoor->setPos(point_left_door);
     leftdoor->setZValue(-1);
@@ -81,7 +77,7 @@ void Floor::drawfloor()
 
 QGraphicsRectItem *Floor::Getplate()
 {
-    return plate;
+    //return plate;
 }
 
 QGraphicsItemGroup *Floor::Getgroup()

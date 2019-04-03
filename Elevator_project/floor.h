@@ -20,20 +20,14 @@ public:
     QGraphicsItemGroup* Getgroup();
 private:
     QPen floorpen;
-    QGraphicsRectItem* plate;
-    QGraphicsRectItem* rightwall;
-    QGraphicsRectItem* leftwall;
-    QGraphicsRectItem* beam;
+    QGraphicsPixmapItem* plate;
+    QGraphicsPixmapItem* rightwall;
+    QGraphicsPixmapItem* leftwall;
+    QGraphicsPixmapItem* beam;
     QGraphicsPixmapItem* leftdoor;
     QGraphicsPixmapItem* rightdoor;
     QGraphicsRectItem* background;
     QGraphicsItemGroup* floorgroup;
-    QRect platerect;
-    QRect rightwallrect;
-    QRect leftwallrect;
-    QRect beamrect;
-    QRect rightdoorrect;
-    QRect leftdoorrect;
     QRect backgroundrect;
     QPoint point_left_wall;
     QPoint point_right_wall;

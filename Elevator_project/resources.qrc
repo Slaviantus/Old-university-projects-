@@ -2,5 +2,9 @@
     <qresource prefix="/textures">
         <file>images/right_door.png</file>
         <file>images/left_door.png</file>
+        <file>images/right_wall.png</file>
+        <file>images/left_wall.png</file>
+        <file>images/beam.png</file>
+        <file>images/plate.png</file>
     </qresource>
 </RCC>
