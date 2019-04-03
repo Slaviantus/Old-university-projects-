@@ -12,13 +12,20 @@ Floor::Floor()
 {
     floorpen.setColor(Qt::gray);
     floorpen.setWidth(1);
+    point_plate.setX(0);
+    point_plate.setY(200);
+    point_right_door.setX(371);
+    point_right_door.setY(30);
+    point_left_door.setX(342);
+    point_left_door.setY(30);
+
     plate = new QGraphicsRectItem;
     plate->setPen(floorpen);
     plate->setBrush(Qt::green);
     platerect.setWidth(741);
-    platerect.setHeight(30);
+    platerect.setHeight(20);
     plate->setRect(platerect);
-    plate->setPos(0, 200);
+    plate->setPos(point_plate);
     plate->setZValue(0);
     rightwall = new QGraphicsRectItem;
     rightwall->setPen(floorpen);
@@ -44,35 +51,23 @@ Floor::Floor()
     beam->setRect(beamrect);
     beam->setPos(280, 0);
     beam->setZValue(0);
-    leftdoor = new QGraphicsRectItem;
-    leftdoor->setPen(floorpen);
-    leftdoor->setBrush(Qt::green);
-    leftdoorrect.setHeight(170);
-    leftdoorrect.setWidth(90);
-    leftdoor->setRect(leftdoorrect);
-    leftdoor->setPos(280, 30);
+    leftdoor = new QGraphicsPixmapItem;
+    leftdoor->setPos(point_left_door);
     leftdoor->setZValue(-1);
-//    rightdoor = new QGraphicsRectItem;
-//    rightdoor->setPen(floorpen);
-//    rightdoor->setBrush(Qt::green);
-//    rightdoorrect.setHeight(170);
-//    rightdoorrect.setWidth(30);
-//    rightdoor->setRect(rightdoorrect);
-//    rightdoor->setPos(371, 30);
-//    rightdoor->setZValue(-1);
-
-    QGraphicsPixmapItem *rightdoorpix = new QGraphicsPixmapItem;
-    rightdoorpix->setPos(371, 30);
-    QPixmap pixmap(":/textures/images/right_door.png");
-    rightdoorpix->setPixmap(pixmap);
+    left_door_pixmap.load(":/textures/images/left_door.png");
+    leftdoor->setPixmap(left_door_pixmap);
+    rightdoor = new QGraphicsPixmapItem;
+    rightdoor->setPos(point_right_door);
+    rightdoor->setZValue(-1);
+    right_door_pixmap.load(":/textures/images/right_door.png");
+    rightdoor->setPixmap(right_door_pixmap);
     floorgroup = new QGraphicsItemGroup;
     floorgroup->addToGroup(plate);
     floorgroup->addToGroup(leftwall);
     floorgroup->addToGroup(rightwall);
     floorgroup->addToGroup(beam);
     floorgroup->addToGroup(leftdoor);
-    //floorgroup->addToGroup(rightdoor);
-    floorgroup->addToGroup(rightdoorpix);
+    floorgroup->addToGroup(rightdoor);
     floorgroup->setPos(0,500);
 
     this->doors();

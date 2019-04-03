@@ -6,6 +6,9 @@
 #include "QTimer"
 #include "QObject"
 #include "QGraphicsItem"
+#include "QPoint"
+#include "QGraphicsPixmapItem"
+#include "QPixmap"
 
 class Floor : public QObject
 {
@@ -21,8 +24,8 @@ private:
     QGraphicsRectItem* rightwall;
     QGraphicsRectItem* leftwall;
     QGraphicsRectItem* beam;
-    QGraphicsRectItem* leftdoor;
-    QGraphicsRectItem* rightdoor;
+    QGraphicsPixmapItem* leftdoor;
+    QGraphicsPixmapItem* rightdoor;
     QGraphicsRectItem* background;
     QGraphicsItemGroup* floorgroup;
     QRect platerect;
@@ -32,6 +35,20 @@ private:
     QRect rightdoorrect;
     QRect leftdoorrect;
     QRect backgroundrect;
+    QPoint point_left_wall;
+    QPoint point_right_wall;
+    QPoint point_right_door;
+    QPoint point_left_door;
+    QPoint point_plate;
+    QPoint point_beam;
+    QPixmap right_door_pixmap;
+    QPixmap left_door_pixmap;
+    QPixmap left_wall_pixmap;
+    QPixmap right_wall_pixmap;
+    QPixmap plate_pixmap;
+    QPixmap beam_pixmap;
+    QPixmap background_pixmap;
+
     void doors();
     QTimer* doorstimer;
 private slots:
