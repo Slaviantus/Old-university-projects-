@@ -39,44 +39,18 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
-   <widget class="QToolBox" name="toolBox">
+   <widget class="QPushButton" name="add_floor">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>20</y>
-      <width>171</width>
-      <height>671</height>
+      <x>860</x>
+      <y>100</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>1</number>
+    <property name="text">
+     <string>add floor</string>
     </property>
-    <widget class="QWidget" name="page">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>171</width>
-       <height>617</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Page 1</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="page_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>171</width>
-       <height>617</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Page 2</string>
-     </attribute>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -105,8 +79,29 @@
    <class>Gview</class>
    <extends>QGraphicsView</extends>
    <header>gview.h</header>
+   <slots>
+    <slot>on_add_floor_clicked()</slot>
+    <slot>slot2()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>add_floor</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_add_floor_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>877</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>779</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

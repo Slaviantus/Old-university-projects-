@@ -7,18 +7,21 @@
 #include "QGraphicsItem"
 #include "QGraphicsRectItem"
 #include "QHBoxLayout"
+#include "floor.h"
 
 class Gview : public QGraphicsView //класс окна графического представления QGraphicsView
 {
  Q_OBJECT
 public:
     Gview(QWidget *parent = 0);
+    void add_floor();
 private:
     QGraphicsScene *scene;
-    QGraphicsRectItem *rectItem;
-    QTimer *myRectTimer;
+    QList <Floor*> floors;
 private slots:
-    void myTimerRect();
+
+public slots:
+     void on_add_floor_clicked();
 };
 
 #endif // GVIEW_H

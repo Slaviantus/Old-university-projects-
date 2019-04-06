@@ -9,15 +9,17 @@
 #include "QPoint"
 #include "QGraphicsPixmapItem"
 #include "QPixmap"
+#include "QTimeLine"
 
 class Floor : public QObject
 {
     //Q_OBJECT
 public:
-    Floor();
+    Floor(int number, int scene_height);
     void drawfloor();
     QGraphicsRectItem* Getplate();
     QGraphicsItemGroup* Getgroup();
+    void setnumber(int num);
 private:
     QPen floorpen;
     QGraphicsPixmapItem* plate;
@@ -26,15 +28,15 @@ private:
     QGraphicsPixmapItem* beam;
     QGraphicsPixmapItem* leftdoor;
     QGraphicsPixmapItem* rightdoor;
-    QGraphicsRectItem* background;
+    QGraphicsPixmapItem* background;
     QGraphicsItemGroup* floorgroup;
-    QRect backgroundrect;
     QPoint point_left_wall;
     QPoint point_right_wall;
     QPoint point_right_door;
     QPoint point_left_door;
     QPoint point_plate;
     QPoint point_beam;
+    QPoint point_background;
     QPixmap right_door_pixmap;
     QPixmap left_door_pixmap;
     QPixmap left_wall_pixmap;
@@ -42,11 +44,11 @@ private:
     QPixmap plate_pixmap;
     QPixmap beam_pixmap;
     QPixmap background_pixmap;
-
-    void doors();
-    QTimer* doorstimer;
-private slots:
+    QTimeLine doorsTimeLine;
     void Opendoors();
+    int number;
+private slots:
+    void setDoorsPos(int x);
     int i;
 };
 

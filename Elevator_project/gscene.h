@@ -14,6 +14,7 @@ class GScene:public QWidget
     Q_OBJECT
 public:
     GScene(QWidget *parent = 0);
+    Gview* get_pointer_of_Gview();
 private:
     QHBoxLayout *GLayoutScene;
     Gview *PGView;

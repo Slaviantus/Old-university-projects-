@@ -3,6 +3,8 @@
 #include "QDebug"
 #include "floor.h"
 #include "QRect"
+#include "QList"
+#include "iostream"
 
 using namespace std;
 
@@ -12,20 +14,24 @@ Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор г�
     scene->addRect(scene->sceneRect());//рисуем прямоугольник границы сцены
     setScene(scene);
 
-    myRectTimer = new QTimer(this);
-    myRectTimer->start(1000);
-    connect(myRectTimer, SIGNAL(timeout()), this, SLOT(myTimerRect()));
-    rectItem = new QGraphicsRectItem(0, 0, 200, 200);//координаты в QGraphicscene
-    rectItem->setPen(QPen(Qt::blue, 2, Qt::DotLine));//редактирование обводки объекта
-    rectItem->setBrush(Qt::green);//заливка объекта
-    scene->addItem(rectItem);
-    Floor *fl = new Floor;
-    scene->addItem(fl->Getgroup());
-    }
+    Floor *first_floor = new Floor(1, scene->height());
+    floors.push_front(first_floor);
+    Floor *second_floor = new Floor(2, scene->height());
+    floors.push_back(second_floor);
+    scene->addItem(first_floor->Getgroup());
+    scene->addItem(second_floor->Getgroup());
 
-void Gview::myTimerRect()
+}
+
+void Gview::add_floor()
 {
-  static int i = 0;
-  i++;
-  rectItem->setPos(i,0);
+    Floor *floor = new Floor(floors.length() + 1, scene->height());
+    floors.push_back(floor);
+    scene->addItem(floor->Getgroup());
+    //cout << "Slavya!" << endl;
+}
+
+void Gview::on_add_floor_clicked()
+{
+    cout << "Slavya! KPSS" << endl;
 }

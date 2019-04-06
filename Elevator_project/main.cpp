@@ -25,7 +25,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     GScene gs;
-    gs.resize(1100, 900); // задаёт фиксированный размер без скролов
+    gs.resize(1100, 900);/// задаёт фиксированный размер без скролов
+
+
     //gs.show();
     w.show();
     return a.exec();

@@ -5,10 +5,11 @@
 #include "QTimer"
 #include "QGraphicsPixmapItem"
 #include "QPixmap"
+#include "QTimeLine"
 
 using namespace std;
 
-Floor::Floor()
+Floor::Floor(int number, int scene_height)
 {
     floorpen.setColor(Qt::gray);
     floorpen.setWidth(1);
@@ -26,6 +27,16 @@ Floor::Floor()
     point_beam.setY(0);
     point_plate.setX(0);
     point_plate.setY(200);
+    point_background.setX(342);
+    point_background.setY(30);
+
+
+    doorsTimeLine.setFrameRange(0, 90);//диапазон изменённых значений
+    doorsTimeLine.setDuration(3000);// время движения в сек
+    doorsTimeLine.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);//плавность
+    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos);
+
+
 
     plate = new QGraphicsPixmapItem;
     plate->setPos(point_plate);
@@ -57,6 +68,14 @@ Floor::Floor()
     rightdoor->setZValue(-1);
     right_door_pixmap.load(":/textures/images/right_door.png");
     rightdoor->setPixmap(right_door_pixmap);
+    background = new QGraphicsPixmapItem;
+    background->setPos(point_background);
+    background->setZValue(-2);
+    background_pixmap.load(":/textures/images/background.png");
+    background->setPixmap(background_pixmap);
+
+
+
     floorgroup = new QGraphicsItemGroup;
     floorgroup->addToGroup(plate);
     floorgroup->addToGroup(leftwall);
@@ -64,9 +83,18 @@ Floor::Floor()
     floorgroup->addToGroup(beam);
     floorgroup->addToGroup(leftdoor);
     floorgroup->addToGroup(rightdoor);
-    floorgroup->setPos(0,500);
+    floorgroup->addToGroup(background);
+    floorgroup->setPos(0, scene_height - 220 * number);
 
-    this->doors();
+
+//    auto timer = new QTimer(this);
+//    connect(timer, &QTimer::timeout, [this]()
+//    {
+//        Opendoors();
+//    });
+//    timer->setSingleShot(true);
+//    timer->start(1000);
+
 }
 
 void Floor::drawfloor()
@@ -80,22 +108,26 @@ QGraphicsRectItem *Floor::Getplate()
     //return plate;
 }
 
+void Floor::setDoorsPos(int x)
+{
+    rightdoor->setPos(point_right_door.x() + x, 30);
+    leftdoor->setPos(point_left_door.x() - x, 30);
+}
+
 QGraphicsItemGroup *Floor::Getgroup()
 {
     return floorgroup;
 }
 
+void Floor::setnumber(int num)
+{
+    number = num;
+}
+
 void Floor::Opendoors()
 {
-    rightdoor->setPos(i,0);
-    i++;
-
+    doorsTimeLine.start();
 }
 
-void Floor::doors()
-{
-    doorstimer = new QTimer(this);
-    doorstimer->start(500);
-    connect(doorstimer, SIGNAL(timeout()), this, SLOT(Opendoors()));
-    i = 371;
-}
+
+

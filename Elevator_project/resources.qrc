@@ -6,5 +6,6 @@
         <file>images/left_wall.png</file>
         <file>images/beam.png</file>
         <file>images/plate.png</file>
+        <file>images/background.png</file>
     </qresource>
 </RCC>
