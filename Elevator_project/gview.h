@@ -14,9 +14,13 @@ class Gview : public QGraphicsView //класс окна графическог�
  Q_OBJECT
 public:
     Gview(QWidget *parent = 0);
+    ~Gview();
 private:
     QGraphicsScene *scene;
     QList <Floor*> floors;
+    QList <Floor*>::iterator it;
+    Floor *first_floor;
+    Floor *second_floor;
 private slots:
     void add_floor();
 public slots:

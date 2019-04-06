@@ -14,13 +14,26 @@ Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор г�
     scene->addRect(scene->sceneRect());//рисуем прямоугольник границы сцены
     setScene(scene);
 
-    Floor *first_floor = new Floor(1, scene->height());
+    first_floor = new Floor(1, scene->height());
     floors.push_front(first_floor);
-    Floor *second_floor = new Floor(2, scene->height());
+    second_floor = new Floor(2, scene->height());
     floors.push_back(second_floor);
     scene->addItem(first_floor->Getgroup());
     scene->addItem(second_floor->Getgroup());
+    for(auto i = floors.begin(); i != floors.end(); i++)
+    {
+        cout << *i << endl;
+    }
 
+}
+
+Gview::~Gview()
+{
+    for(auto i = floors.begin(); i != floors.end(); i++)
+    {
+        cout << *i << endl;
+        delete *i;
+    }
 }
 
 void Gview::add_floor()

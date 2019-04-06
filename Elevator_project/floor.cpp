@@ -6,6 +6,7 @@
 #include "QGraphicsPixmapItem"
 #include "QPixmap"
 #include "QTimeLine"
+#include "iostream"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ Floor::Floor(int number, int scene_height)
 
 
     plate = new QGraphicsPixmapItem;
+    cout << "Memory plate installed" << endl;
+    cout << plate << endl;
     plate->setPos(point_plate);
     plate->setZValue(0);
     plate_pixmap.load(":/textures/images/plate.png");
@@ -103,11 +106,6 @@ void Floor::drawfloor()
 
 }
 
-QGraphicsRectItem *Floor::Getplate()
-{
-    //return plate;
-}
-
 void Floor::setDoorsPos(int x)
 {
     rightdoor->setPos(point_right_door.x() + x, 30);
@@ -122,6 +120,18 @@ QGraphicsItemGroup *Floor::Getgroup()
 void Floor::setnumber(int num)
 {
     number = num;
+}
+
+Floor::~Floor()
+{
+    delete plate;
+    delete rightwall;
+    delete leftwall;
+    delete beam;
+    delete leftdoor;
+    delete rightdoor;
+    delete background;
+    delete floorgroup;
 }
 
 void Floor::Opendoors()

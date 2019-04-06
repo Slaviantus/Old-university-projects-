@@ -17,9 +17,9 @@ class Floor : public QObject
 public:
     Floor(int number, int scene_height);
     void drawfloor();
-    QGraphicsRectItem* Getplate();
     QGraphicsItemGroup* Getgroup();
     void setnumber(int num);
+    ~Floor();
 private:
     QPen floorpen;
     QGraphicsPixmapItem* plate;
