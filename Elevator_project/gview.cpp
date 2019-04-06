@@ -43,3 +43,17 @@ void Gview::add_floor()
     scene->addItem(floor->Getgroup());
 }
 
+void Gview::delete_floor()
+{
+    if(floors.length() == 2)
+    {
+        cout <<"You cant delete floors in 2-stored building" << endl;
+    }
+    else
+    {
+    it = floors.end();
+    delete *it;
+    scene->removeItem((*it)->Getgroup());
+    floors.pop_back();
+    }
+}

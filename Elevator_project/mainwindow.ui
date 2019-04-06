@@ -52,6 +52,19 @@
      <string>add floor</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="delete_floor">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>140</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>delete floor</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -81,6 +94,7 @@
    <header>gview.h</header>
    <slots>
     <slot>add_floor()</slot>
+    <slot>delete_floor()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -99,6 +113,22 @@
     <hint type="destinationlabel">
      <x>784</x>
      <y>289</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>delete_floor</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>delete_floor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>909</x>
+     <y>197</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>791</x>
+     <y>356</y>
     </hint>
    </hints>
   </connection>
