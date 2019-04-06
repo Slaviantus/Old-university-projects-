@@ -18,10 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::Scene_Pointer(GScene &pointer_to_scene)
-{
-
-}
 
 MainWindow::~MainWindow()
 {

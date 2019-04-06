@@ -28,10 +28,5 @@ void Gview::add_floor()
     Floor *floor = new Floor(floors.length() + 1, scene->height());
     floors.push_back(floor);
     scene->addItem(floor->Getgroup());
-    //cout << "Slavya!" << endl;
 }
 
-void Gview::on_add_floor_clicked()
-{
-    cout << "Slavya! KPSS" << endl;
-}

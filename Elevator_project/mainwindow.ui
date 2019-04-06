@@ -80,8 +80,7 @@
    <extends>QGraphicsView</extends>
    <header>gview.h</header>
    <slots>
-    <slot>on_add_floor_clicked()</slot>
-    <slot>slot2()</slot>
+    <slot>add_floor()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -91,15 +90,15 @@
    <sender>add_floor</sender>
    <signal>clicked()</signal>
    <receiver>graphicsView</receiver>
-   <slot>on_add_floor_clicked()</slot>
+   <slot>add_floor()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>877</x>
-     <y>150</y>
+     <x>892</x>
+     <y>146</y>
     </hint>
     <hint type="destinationlabel">
-     <x>779</x>
-     <y>311</y>
+     <x>784</x>
+     <y>289</y>
     </hint>
    </hints>
   </connection>

@@ -18,7 +18,6 @@ class MainWindow : public QMainWindow
 QPainter painter;
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-void Scene_Pointer(GScene &pointer_to_scene);
     ~MainWindow();
 
 private slots:

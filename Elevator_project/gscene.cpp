@@ -8,8 +8,3 @@ GScene::GScene(QWidget *parent):QWidget(parent)//конструктор видж
     GLayoutScene->addWidget(PGView);
     setLayout(GLayoutScene);
 }
-
-Gview *GScene::get_pointer_of_Gview()
-{
-    return PGView;
-}
