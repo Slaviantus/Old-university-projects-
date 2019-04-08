@@ -41,6 +41,16 @@ void Gview::add_floor()
     Floor *floor = new Floor(floors.length() + 1, scene->height());
     floors.push_back(floor);
     scene->addItem(floor->Getgroup());
+    cout<< "RECT " << scene->sceneRect().height() << endl;
+    QRect rect;
+    rect.setHeight(10000);
+    rect.setWidth(741);
+    QPoint point(0,0);
+    rect.setTopLeft(point);
+    delete scene;
+    scene = new QGraphicsScene(0, 0, 741, 10000);
+    setScene(scene);
+
 }
 
 void Gview::delete_floor()
@@ -52,8 +62,11 @@ void Gview::delete_floor()
     else
     {
     it = floors.end();
-    delete *it;
-    scene->removeItem((*it)->Getgroup());
+    deleted_floor = *it;
+    //floors.pop_back();
+    //it = floors.end();
+    scene->removeItem(deleted_floor->Getgroup());
     floors.pop_back();
+    delete deleted_floor;
     }
 }

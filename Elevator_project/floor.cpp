@@ -35,7 +35,7 @@ Floor::Floor(int number, int scene_height)
     doorsTimeLine.setFrameRange(0, 90);//диапазон изменённых значений
     doorsTimeLine.setDuration(3000);// время движения в сек
     doorsTimeLine.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);//плавность
-    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos);
+    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
 
 
 
@@ -98,6 +98,15 @@ Floor::Floor(int number, int scene_height)
 //    timer->setSingleShot(true);
 //    timer->start(1000);
 
+    Opendoors();
+    auto timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, [this]()
+        {
+            Closedoors();
+        });
+        timer->setSingleShot(true);
+        timer->start(5000);
+
 }
 
 void Floor::drawfloor()
@@ -106,7 +115,7 @@ void Floor::drawfloor()
 
 }
 
-void Floor::setDoorsPos(int x)
+void Floor::setDoorsPos_open(int x)
 {
     rightdoor->setPos(point_right_door.x() + x, 30);
     leftdoor->setPos(point_left_door.x() - x, 30);
@@ -136,7 +145,20 @@ Floor::~Floor()
 
 void Floor::Opendoors()
 {
+    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
     doorsTimeLine.start();
+}
+
+void Floor::Closedoors()
+{
+    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
+    doorsTimeLine.start();
+}
+
+void Floor::setDoorsPos_close(int x)
+{
+    rightdoor->setPos((point_right_door.x() + 29) - x, 30);
+    leftdoor->setPos((point_left_door.x() - 29) + x, 30);
 }
 
 

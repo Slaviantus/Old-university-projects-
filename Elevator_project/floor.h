@@ -45,10 +45,12 @@ private:
     QPixmap beam_pixmap;
     QPixmap background_pixmap;
     QTimeLine doorsTimeLine;
-    void Opendoors();
     int number;
 private slots:
-    void setDoorsPos(int x);
+    void setDoorsPos_open(int x);
+    void Opendoors();
+    void Closedoors();
+    void setDoorsPos_close(int x);
     int i;
 };
 

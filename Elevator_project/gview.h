@@ -21,6 +21,7 @@ private:
     QList <Floor*>::iterator it;
     Floor *first_floor;
     Floor *second_floor;
+    Floor *deleted_floor;
 private slots:
     void add_floor();
     void delete_floor();
