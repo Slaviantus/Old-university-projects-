@@ -32,7 +32,8 @@ SOURCES += \
     floors.cpp \
     gscene.cpp \
     gview.cpp \
-    floor.cpp
+    floor.cpp \
+    elevator.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     floors.h \
     gscene.h \
     gview.h \
-    floor.h
+    floor.h \
+    elevator.h
 
 FORMS += \
         mainwindow.ui

@@ -8,6 +8,7 @@
 #include "QGraphicsRectItem"
 #include "QHBoxLayout"
 #include "floor.h"
+#include "elevator.h"
 
 class Gview : public QGraphicsView //класс окна графического представления QGraphicsView
 {
@@ -22,6 +23,7 @@ private:
     Floor *first_floor;
     Floor *second_floor;
     Floor *deleted_floor;
+    Elevator elevator;
 private slots:
     void add_floor();
     void delete_floor();

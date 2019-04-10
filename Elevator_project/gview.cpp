@@ -24,6 +24,7 @@ Gview::Gview(QWidget *parent):QGraphicsView (parent)//конструктор г�
     {
         cout << *i << endl;
     }
+  elevator.set_list(&floors);
 
 }
 
@@ -50,7 +51,8 @@ void Gview::add_floor()
     delete scene;
     scene = new QGraphicsScene(0, 0, 741, 10000);
     setScene(scene);
-
+    elevator.add_floor();
+    elevator.Show();
 }
 
 void Gview::delete_floor()
