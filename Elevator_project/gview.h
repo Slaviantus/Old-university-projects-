@@ -18,11 +18,6 @@ public:
     ~Gview();
 private:
     QGraphicsScene *scene;
-    QList <Floor*> floors;
-    QList <Floor*>::iterator it;
-    Floor *first_floor;
-    Floor *second_floor;
-    Floor *deleted_floor;
     Elevator elevator;
 private slots:
     void add_floor();

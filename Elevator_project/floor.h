@@ -19,6 +19,8 @@ public:
     void drawfloor();
     QGraphicsItemGroup* Getgroup();
     void setnumber(int num);
+    void Opendoors();
+    void Closedoors();
     ~Floor();
 private:
     QPen floorpen;
@@ -48,8 +50,6 @@ private:
     int number;
 private slots:
     void setDoorsPos_open(int x);
-    void Opendoors();
-    void Closedoors();
     void setDoorsPos_close(int x);
     int i;
 };

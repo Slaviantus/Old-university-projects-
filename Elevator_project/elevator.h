@@ -7,21 +7,26 @@
 #include "QTimeLine"
 
 
+
 class Elevator
 {
+    Q_OBJECT
 private:
-    QList<Floor*> *floors;
-    QList<Floor*>::iterator it;
     QVector<bool> floors_table;
     int current_floor;
     void Go_one_floor();
+    void Go();
+    void Stopping();
+    QList <Floor*> floors;
+    QList <Floor*>::iterator it;
+    QGraphicsScene *scene;
     QTimeLine timer;
-public:
+  public:
     Elevator();
-    void set_list(QList<Floor*> *pointer_list);
-    void Goto_floor(int floornum);
-    void add_floor();
+    void setscene(QGraphicsScene *pointer_scene);
     void Show();
+    void add_floor();
+private slots:
    };
 
 #endif // ELEVATOR_H

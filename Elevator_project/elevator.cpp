@@ -1,9 +1,19 @@
 #include "elevator.h"
 #include "iostream"
+#include "floor.h"
+
 
 using namespace std;
 
 
+
+
+void Elevator::add_floor()
+{
+    Floor *floor = new Floor(floors.length() + 1, scene->height());
+    floors.push_back(floor);
+    scene->addItem(floor->Getgroup());
+}
 
 Elevator::Elevator()
 {
@@ -11,30 +21,21 @@ Elevator::Elevator()
     timer.setDuration(3000);
 }
 
-void Elevator::set_list(QList<Floor *> *pointer_list)
+void Elevator::setscene(QGraphicsScene *pointer_scene)
 {
-    floors = pointer_list;
-    floors_table.resize(floors->length());
+    scene = pointer_scene;
+    Floor *first_floor = new Floor(1, scene->height());
+    floors.push_front(first_floor);
+    Floor *second_floor = new Floor(2, scene->height());
+    scene->addItem(first_floor->Getgroup());
+    scene->addItem(second_floor->Getgroup());
+
+
 }
 
-void Elevator::Goto_floor(int floornum)
-{
-    for(int i = 0; i < floors_table.size(); i++)
-    {
-        if(floornum == i + 1)
-        {
-            floors_table[i] = true;
-        }
-    }
-}
 
-void Elevator::add_floor()
-{
-    floors_table.resize(floors_table.length() + 1);
-}
 
 void Elevator::Show()
 {
-    cout << "aaaa  " << floors->length() << endl;
-    cout << "bbbb  " << floors_table.length() << endl;
+        cout << "bbbb  " << floors_table.length() << endl;
 }
