@@ -10,7 +10,6 @@
 
 class Elevator
 {
-    Q_OBJECT
 private:
     QVector<bool> floors_table;
     int current_floor;
