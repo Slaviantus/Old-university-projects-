@@ -23,6 +23,8 @@ public:
 private slots:
 
 
+public slots:
+void on_add_floor_clicked();
 
 private:
     Ui::MainWindow *ui;

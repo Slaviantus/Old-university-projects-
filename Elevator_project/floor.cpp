@@ -7,11 +7,13 @@
 #include "QPixmap"
 #include "QTimeLine"
 #include "iostream"
+#include "gscene.h"
 
 using namespace std;
 
-Floor::Floor(int number, int scene_height)
+Floor::Floor(int number, QGraphicsScene* scene)
 {
+    this->number = number;
     floorpen.setColor(Qt::gray);
     floorpen.setWidth(1);
     point_plate.setX(0);
@@ -32,8 +34,8 @@ Floor::Floor(int number, int scene_height)
     point_background.setY(30);
 
 
-    doorsTimeLine.setFrameRange(0, 90);//диапазон изменённых значений
-    doorsTimeLine.setDuration(3000);// время движения в сек
+    doorsTimeLine.setFrameRange(0, 30);//диапазон изменённых значений
+    doorsTimeLine.setDuration(2000);// время движения в сек
     doorsTimeLine.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);//плавность
     connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
 
@@ -87,7 +89,7 @@ Floor::Floor(int number, int scene_height)
     floorgroup->addToGroup(leftdoor);
     floorgroup->addToGroup(rightdoor);
     floorgroup->addToGroup(background);
-    floorgroup->setPos(0, scene_height - 220 * number);
+    floorgroup->setPos(0,-scene->height());
 
 
 //    auto timer = new QTimer(this);
@@ -155,10 +157,15 @@ void Floor::Closedoors()
     doorsTimeLine.start();
 }
 
+int Floor::Get_number()
+{
+    return number;
+}
+
 void Floor::setDoorsPos_close(int x)
 {
-    rightdoor->setPos((point_right_door.x() + 29) - x, 30);
-    leftdoor->setPos((point_left_door.x() - 29) + x, 30);
+    rightdoor->setPos((point_right_door.x() + 30) - x, 30);
+    leftdoor->setPos((point_left_door.x() - 30) + x, 30);
 }
 
 

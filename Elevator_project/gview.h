@@ -21,7 +21,6 @@ private:
     Elevator elevator;
 private slots:
     void add_floor();
-    void delete_floor();
 public slots:
 };
 

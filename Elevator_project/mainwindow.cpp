@@ -25,3 +25,10 @@ MainWindow::~MainWindow()
 }
 
 
+
+void MainWindow::on_add_floor_clicked()
+{
+    QPushButton* pushButton = new QPushButton(ui->scrollAreaWidgetContents);
+    pushButton->setText("kek");
+    ui->verticalLayout_2->addWidget(pushButton);
+}

@@ -15,12 +15,13 @@ class Floor : public QObject
 {
     //Q_OBJECT
 public:
-    Floor(int number, int scene_height);
+    Floor(int number, QGraphicsScene *scene);
     void drawfloor();
     QGraphicsItemGroup* Getgroup();
     void setnumber(int num);
     void Opendoors();
     void Closedoors();
+    int Get_number();
     ~Floor();
 private:
     QPen floorpen;

@@ -6,6 +6,18 @@
 #include "floor.h"
 #include "QTimeLine"
 
+enum Elevator_state
+{
+    MOVING,
+    STOPPING
+};
+
+enum Elevator_direction
+{
+    UP,
+    DOWN
+};
+
 
 
 class Elevator
@@ -15,6 +27,7 @@ private:
     int current_floor;
     void Go_one_floor();
     void Go();
+    bool check_floors();
     void Stopping();
     QList <Floor*> floors;
     QList <Floor*>::iterator it;
