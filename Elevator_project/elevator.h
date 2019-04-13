@@ -5,6 +5,7 @@
 #include "QVector"
 #include "floor.h"
 #include "QTimeLine"
+#include "QString"
 
 enum Elevator_state
 {
@@ -20,8 +21,9 @@ enum Elevator_direction
 
 
 
-class Elevator
+class Elevator : public QObject
 {
+    Q_OBJECT
 private:
     QVector<bool> floors_table;
     int current_floor;
@@ -39,6 +41,7 @@ private:
     void Show();
     void add_floor();
 private slots:
+    void floor_button_clicked(QString string);
    };
 
 #endif // ELEVATOR_H

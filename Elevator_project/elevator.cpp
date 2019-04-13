@@ -21,6 +21,11 @@ void Elevator::add_floor()
 
 }
 
+void Elevator::floor_button_clicked(QString string)
+{
+cout << "KEK" << endl;
+}
+
 void Elevator::Go()
 {
     if(check_floors())
@@ -67,6 +72,7 @@ void Elevator::setscene(QGraphicsScene *pointer_scene)
 //    scene->addItem(second_floor->Getgroup());
     add_floor();
     add_floor();
+
     floors_table.resize(2);
     floors_table[0] = false;
     floors_table[1] = false;

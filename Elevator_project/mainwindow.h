@@ -6,6 +6,7 @@
 #include <QAction>
 #include "QGraphicsScene"
 #include "gscene.h"
+#include "elevator.h"
 
 
 namespace Ui {
@@ -29,6 +30,8 @@ void on_add_floor_clicked();
 private:
     Ui::MainWindow *ui;
     QPainter Painter;
+    Elevator *elevator;
+    int floor_button_name;
 
 
 };

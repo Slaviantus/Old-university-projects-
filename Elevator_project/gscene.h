@@ -8,6 +8,7 @@
 #include "QGraphicsRectItem"
 #include "QHBoxLayout"
 #include "gview.h"
+#include "elevator.h"
 
 class GScene:public QWidget
 {

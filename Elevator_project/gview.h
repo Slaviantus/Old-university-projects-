@@ -22,6 +22,7 @@ private:
 private slots:
     void add_floor();
 public slots:
+    void floor_button();
 };
 
 #endif // GVIEW_H
