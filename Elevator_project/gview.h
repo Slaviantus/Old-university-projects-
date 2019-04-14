@@ -9,6 +9,7 @@
 #include "QHBoxLayout"
 #include "floor.h"
 #include "elevator.h"
+#include "QString"
 
 class Gview : public QGraphicsView //класс окна графического представления QGraphicsView
 {
@@ -19,6 +20,7 @@ public:
 private:
     QGraphicsScene *scene;
     Elevator elevator;
+    int floor_number_push_button;
 private slots:
     void add_floor();
 public slots:

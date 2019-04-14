@@ -7,5 +7,6 @@
         <file>images/beam.png</file>
         <file>images/plate.png</file>
         <file>images/background.png</file>
+        <file>fonts/a_lcdnova_[allfont.ru].ttf</file>
     </qresource>
 </RCC>

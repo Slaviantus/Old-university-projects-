@@ -43,9 +43,9 @@
     <property name="geometry">
      <rect>
       <x>810</x>
-      <y>10</y>
+      <y>130</y>
       <width>181</width>
-      <height>711</height>
+      <height>591</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -67,7 +67,7 @@
           <x>0</x>
           <y>0</y>
           <width>177</width>
-          <height>678</height>
+          <height>558</height>
          </rect>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -82,6 +82,49 @@
          <layout class="QVBoxLayout" name="verticalLayout_2"/>
         </widget>
        </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>809</x>
+      <y>9</y>
+      <width>181</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdnumber">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="digitCount">
+        <number>3</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Filled</enum>
+       </property>
       </widget>
      </item>
     </layout>

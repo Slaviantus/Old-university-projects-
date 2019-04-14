@@ -28,8 +28,8 @@ void Gview::add_floor()
 
 void Gview::floor_button()
 {
-    QString name = sender()->objectName();
-   cout << name.toInt() << endl;
+   floor_number_push_button = sender()->objectName().toInt();
+   elevator.calling_the_floor(floor_number_push_button);
 }
 
 

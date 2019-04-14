@@ -22,7 +22,7 @@ public:
     ~MainWindow();
 
 private slots:
-
+void indicator();
 
 public slots:
 void on_add_floor_clicked();
