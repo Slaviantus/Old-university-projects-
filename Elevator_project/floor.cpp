@@ -91,6 +91,9 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->addToGroup(background);
     floorgroup->setPos(0,-scene->height());
 
+    elevator_stop_point.setX(342);
+    elevator_stop_point.setY(-scene->height());
+
 
 //    auto timer = new QTimer(this);
 //    connect(timer, &QTimer::timeout, [this]()
@@ -155,6 +158,11 @@ void Floor::Closedoors()
 {
     connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
     doorsTimeLine.start();
+}
+
+QPoint Floor::Get_floor_stop_position()
+{
+    return elevator_stop_point;
 }
 
 int Floor::Get_number()

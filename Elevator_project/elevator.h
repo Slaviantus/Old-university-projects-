@@ -6,6 +6,11 @@
 #include "floor.h"
 #include "QTimeLine"
 #include "QString"
+#include "QGraphicsLineItem"
+#include "QGraphicsItemGroup"
+#include "QPen"
+#include "QPoint"
+
 
 enum Elevator_state
 {
@@ -37,6 +42,13 @@ private:
     QTimeLine timer_one_floor;
     int floor_difference_up;
     int floor_difference_down;
+    QPen pen;
+    QGraphicsLineItem* left_vertical;
+    QGraphicsLineItem* right_vertical;
+    QGraphicsLineItem* horizontal_up;
+    QGraphicsLineItem* horizontal_down;
+    QGraphicsItemGroup* elevator_shape;
+
 
 signals:
     void floor_Changed();

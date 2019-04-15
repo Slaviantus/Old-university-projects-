@@ -19,7 +19,7 @@ void Elevator::add_floor()
     cout << "Floor number " << floor->Get_number() << endl;
     //======================================
     current_floor++;
-    emit(floor_Changed());
+    emit floor_Changed();
 
 
 }
@@ -113,23 +113,54 @@ void Elevator::Stopping()
 
 Elevator::Elevator()
 {
+    emit floor_Changed();
+
      timer_one_floor.setDuration(3000);
-}
+     pen.setColor(Qt::red);
+     pen.setWidth(3);
+
+
+     left_vertical = new QGraphicsLineItem;
+     left_vertical->setPen(pen);
+     left_vertical->setLine(0, 0, 0, 170);
+     left_vertical->setZValue(1);
+     right_vertical = new QGraphicsLineItem;
+     right_vertical->setPen(pen);
+     right_vertical->setLine(60, 0, 60, 170);
+     right_vertical->setZValue(1);
+     horizontal_up = new QGraphicsLineItem;
+     horizontal_up->setPen(pen);
+     horizontal_up->setLine(0, 0, 60, 0);
+     horizontal_up->setZValue(1);
+     horizontal_down = new QGraphicsLineItem;
+     horizontal_down->setPen(pen);
+     horizontal_down->setLine(0, 170, 60, 170);
+     horizontal_down->setZValue(1);
+
+     elevator_shape = new QGraphicsItemGroup;
+     elevator_shape->addToGroup(left_vertical);
+     elevator_shape->addToGroup(right_vertical);
+     elevator_shape->addToGroup(horizontal_down);
+     elevator_shape->addToGroup(horizontal_up);
+     elevator_shape->setZValue(1);
+
+ }
 
 void Elevator::setscene(QGraphicsScene *pointer_scene)
 {
     scene = pointer_scene;
-//    Floor *first_floor = new Floor(1, scene);
-//    floors.push_front(first_floor);
-//    Floor *second_floor = new Floor(2, scene);
-//    scene->addItem(first_floor->Getgroup());
-//    scene->addItem(second_floor->Getgroup());
     add_floor();
     add_floor();
 
     floors_table.resize(2);
     floors_table[0] = false;
     floors_table[1] = false;
+
+    it = floors.begin();
+    elevator_shape->setPos((*it)->Get_floor_stop_position());
+    scene->addItem(elevator_shape);
+
+
 }
 
 int Elevator::get_current_floor()

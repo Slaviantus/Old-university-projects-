@@ -8,6 +8,7 @@
 #include "QVariant"
 #include "elevator.h"
 #include "QFontDatabase"
+#include "QPalette"
 
 using namespace std;
 
@@ -17,14 +18,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    int id = QFontDatabase::addApplicationFont(":/textures/fonts/a_lcdnova_[allfont.ru].ttf");
-    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-    QFont monospace(family);
-    //connect(&num, SIGNAL(changed()), this, SLOT(show()));
-    //ui->lcdnumber->display(num);
-    //num++;
-
-    //connect(&ui->graphicsView->elevator, SIGNAL(ui->graphicsView->elevator.floor_Changed()), this, SLOT(indicator()));
+    QPalette pal;
+    pal.setColor(QPalette::Normal, QPalette::WindowText, Qt::red);
+    pal.setColor(QPalette::Background, Qt::black);
+    ui->lcdnumber->setAutoFillBackground(true);
+    ui->lcdnumber->setPalette(pal);
+    connect(&ui->graphicsView->elevator, SIGNAL(floor_Changed()), this, SLOT(indicator()));
 
 
     floor_button_name = 0;
@@ -40,7 +39,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::indicator()
 {
-    //ui->lcdnumber->display(ui->graphicsView->elevator.get_current_floor());
+    ui->lcdnumber->display(ui->graphicsView->elevator.get_current_floor());
 }
 
 

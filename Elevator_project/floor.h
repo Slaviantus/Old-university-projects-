@@ -21,6 +21,7 @@ public:
     void setnumber(int num);
     void Opendoors();
     void Closedoors();
+    QPoint Get_floor_stop_position();
     int Get_number();
     ~Floor();
 private:
@@ -40,6 +41,7 @@ private:
     QPoint point_plate;
     QPoint point_beam;
     QPoint point_background;
+    QPoint elevator_stop_point;
     QPixmap right_door_pixmap;
     QPixmap left_door_pixmap;
     QPixmap left_wall_pixmap;
