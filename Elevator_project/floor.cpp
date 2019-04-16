@@ -92,7 +92,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->setPos(0,-scene->height());
 
     elevator_stop_point.setX(342);
-    elevator_stop_point.setY(-scene->height());
+    elevator_stop_point.setY(-scene->height() + 30);
 
 
 //    auto timer = new QTimer(this);

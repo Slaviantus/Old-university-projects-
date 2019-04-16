@@ -32,14 +32,16 @@ class Elevator : public QObject
 private:
     QVector<bool> floors_table;
     int current_floor;
-    void Go_One_floor();
     void Go();
+    void Change_direction();
     bool check_floors();
     void Stopping();
+    void Elevator_manager();
     QList <Floor*> floors;
     QList <Floor*>::iterator it;
     QGraphicsScene *scene;
     QTimeLine timer_one_floor;
+    QTimeLine timer_stopping;
     int floor_difference_up;
     int floor_difference_down;
     QPen pen;
@@ -61,6 +63,9 @@ signals:
     void calling_the_floor(int floor_number);
 private slots:
     void floor_button_clicked(QString string);
+    void go_up(int y);
+    void Check_moving();
+    void Closing_doors();
    };
 
 #endif // ELEVATOR_H
