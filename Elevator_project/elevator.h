@@ -46,6 +46,7 @@ private:
     int floor_difference_down;
     int state;
     int direction;
+    int number;
     QPen pen;
     QGraphicsLineItem* left_vertical;
     QGraphicsLineItem* right_vertical;
@@ -63,12 +64,13 @@ signals:
     void setscene(QGraphicsScene *pointer_scene);
     int get_current_floor();
     void add_floor();
-    void calling_the_floor(int floor_number);
 private slots:
     void floor_button_clicked(QString string);
     void go_up(int y);
     void Check_moving();
     void Closing_doors();
+public slots:
+    void calling_the_floor();
    };
 
 #endif // ELEVATOR_H

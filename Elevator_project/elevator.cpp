@@ -24,11 +24,13 @@ void Elevator::add_floor()
 
 }
 
-void Elevator::calling_the_floor(int floor_number)
+void Elevator::calling_the_floor()
 {
+    cout << "HRENOTEN" << endl;
+    number = sender()->objectName().toInt();
     for(int i = 0; i < floors_table.size(); i++)
     {
-        if(i == floor_number - 1)
+        if(i == number - 1)
         {
             floors_table[i] = true;
         }

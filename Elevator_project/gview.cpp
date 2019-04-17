@@ -26,10 +26,3 @@ void Gview::add_floor()
     elevator.add_floor();
 }
 
-void Gview::floor_button()
-{
-   floor_number_push_button = sender()->objectName().toInt();
-   elevator.calling_the_floor(floor_number_push_button);
-}
-
-

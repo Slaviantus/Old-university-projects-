@@ -50,7 +50,7 @@ void MainWindow::on_add_floor_clicked()
     QPushButton* pushButton = new QPushButton(ui->scrollAreaWidgetContents);
     pushButton->setText(QVariant(floor_button_name).toString());
     pushButton->setObjectName(QVariant(floor_button_name).toString());
-    connect(pushButton,SIGNAL(clicked()), ui->graphicsView, SLOT(floor_button()));
+    connect(pushButton, SIGNAL(clicked()), &ui->graphicsView->elevator, SLOT(calling_the_floor()));
     ui->verticalLayout_2->addWidget(pushButton);
 }
 
