@@ -33,6 +33,11 @@ void Elevator::calling_the_floor(int floor_number)
             floors_table[i] = true;
         }
     }
+    if(STOPPING && check_floors())
+    {
+    Change_direction();
+    }
+
 }
 
 void Elevator::floor_button_clicked(QString string)
@@ -68,8 +73,6 @@ void Elevator::Go()
 
 void Elevator::Change_direction()
 {
-    if(check_floors() && STOPPING)
-        {
             Elevator_state::MOVING;
             for(int i = current_floor - 1; i < floors_table.size(); i++)
             {
@@ -94,10 +97,6 @@ void Elevator::Change_direction()
                 Elevator_direction::DOWN;
           }
             Go();
-
-            //Stopping();
-        }
-
 
 }
 
@@ -146,6 +145,7 @@ void Elevator::Check_moving()
        {
            it++;
        }
+       Elevator_state::STOPPING;
        (*it)->Opendoors();
        timer_stopping.start();
    }
@@ -199,6 +199,10 @@ Elevator::Elevator()
      elevator_shape->addToGroup(horizontal_up);
      elevator_shape->setZValue(1);
 
+     current_floor = 1;
+
+     Elevator_state::STOPPING;
+
  }
 
 void Elevator::setscene(QGraphicsScene *pointer_scene)
@@ -214,7 +218,7 @@ void Elevator::setscene(QGraphicsScene *pointer_scene)
     it = floors.begin();
     elevator_shape->setPos((*it)->Get_floor_stop_position());
     scene->addItem(elevator_shape);
-Go();
+//Go();
 }
 
 int Elevator::get_current_floor()

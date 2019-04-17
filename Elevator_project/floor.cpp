@@ -103,14 +103,14 @@ Floor::Floor(int number, QGraphicsScene* scene)
 //    timer->setSingleShot(true);
 //    timer->start(1000);
 
-    Opendoors();
-    auto timer = new QTimer(this);
-        connect(timer, &QTimer::timeout, [this]()
-        {
-            Closedoors();
-        });
-        timer->setSingleShot(true);
-        timer->start(5000);
+//    Opendoors();
+//    auto timer = new QTimer(this);
+//        connect(timer, &QTimer::timeout, [this]()
+//        {
+//            Closedoors();
+//        });
+//        timer->setSingleShot(true);
+//        timer->start(5000);
 
 }
 
