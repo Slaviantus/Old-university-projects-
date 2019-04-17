@@ -44,6 +44,8 @@ private:
     QTimeLine timer_stopping;
     int floor_difference_up;
     int floor_difference_down;
+    int state;
+    int direction;
     QPen pen;
     QGraphicsLineItem* left_vertical;
     QGraphicsLineItem* right_vertical;

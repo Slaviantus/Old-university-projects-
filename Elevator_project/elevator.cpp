@@ -33,7 +33,7 @@ void Elevator::calling_the_floor(int floor_number)
             floors_table[i] = true;
         }
     }
-    if(STOPPING && check_floors())
+    if((state == STOPPING) && (check_floors()))
     {
     Change_direction();
     }
@@ -73,7 +73,7 @@ void Elevator::Go()
 
 void Elevator::Change_direction()
 {
-            Elevator_state::MOVING;
+            state = MOVING;
             for(int i = current_floor - 1; i < floors_table.size(); i++)
             {
                if(floors_table[i])
@@ -90,11 +90,11 @@ void Elevator::Change_direction()
            }
             if(floor_difference_up >= floor_difference_down)
             {
-                Elevator_direction::UP;
+                direction = UP;
             }
             else
             {
-                Elevator_direction::DOWN;
+                direction = DOWN;
           }
             Go();
 
@@ -129,7 +129,8 @@ void Elevator::Elevator_manager()
 
 void Elevator::Check_moving()
 {
-   if(UP)
+    cout << "HRENOTEN" <<endl;
+   if(direction == UP)
    {
        current_floor++;
 
@@ -141,12 +142,12 @@ void Elevator::Check_moving()
    if(floors_table[current_floor - 1])
    {
        it = floors.begin();
-       for(int i = 0; i < current_floor; i++)
+       for(int i = 0; i < current_floor - 1; i++)
        {
            it++;
        }
-       Elevator_state::STOPPING;
-       (*it)->Opendoors();
+       state = STOPPING;
+       (*it)->Opendoors();//
        timer_stopping.start();
    }
 }
@@ -201,7 +202,7 @@ Elevator::Elevator()
 
      current_floor = 1;
 
-     Elevator_state::STOPPING;
+     state = STOPPING;
 
  }
 
