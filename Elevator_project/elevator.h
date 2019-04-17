@@ -56,6 +56,7 @@ private:
 
 signals:
     void floor_Changed();
+    void carry_on();
 
   public:
     Elevator();

@@ -55,6 +55,16 @@ void Elevator::go_up(int y)
 
 void Elevator::Go()
 {
+    if(direction == UP)
+    {
+    timer_one_floor.setDuration(3000 * floor_difference_up);
+    timer_one_floor.setFrameRange(0, 220 * floor_difference_up);
+    }
+    else
+    {
+     timer_one_floor.setDuration(3000 * floor_difference_down);
+     timer_one_floor.setFrameRange(0, 220 * floor_difference_down);
+    }
     timer_one_floor.start();
 
 
@@ -129,32 +139,31 @@ void Elevator::Elevator_manager()
 
 void Elevator::Check_moving()
 {
-    cout << "HRENOTEN" <<endl;
-   if(direction == UP)
-   {
-       current_floor++;
+    it = floors.begin();
+    if(direction == UP)
+    {
+        current_floor += floor_difference_up;
+        it += floor_difference_up;
+    }
+    else
+    {
+        current_floor -= floor_difference_down;
+        it -= floor_difference_down;
+    }
+    emit floor_Changed();
+    state = STOPPING;
+    (*it)->Opendoors();
+    timer_stopping.start();
 
-   }
-   else
-   {
-       current_floor--;
-   }
-   if(floors_table[current_floor - 1])
-   {
-       it = floors.begin();
-       for(int i = 0; i < current_floor - 1; i++)
-       {
-           it++;
-       }
-       state = STOPPING;
-       (*it)->Opendoors();//
-       timer_stopping.start();
-   }
 }
 
 void Elevator::Closing_doors()
 {
     (*it)->Closedoors();
+    if(check_floors())
+    {
+
+    }
 
 }
 
@@ -170,6 +179,7 @@ Elevator::Elevator()
     connect(&timer_one_floor, &QTimeLine::frameChanged, this, &Elevator::go_up);
     connect(&timer_one_floor, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
+    connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
 
 
      pen.setColor(Qt::red);
