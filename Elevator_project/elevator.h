@@ -58,6 +58,7 @@ private:
 signals:
     void floor_Changed();
     void carry_on();
+    void doors_are_closed();
 
   public:
     Elevator();
@@ -69,6 +70,7 @@ private slots:
     void go_up(int y);
     void Check_moving();
     void Closing_doors();
+    void control_carry_on();
 public slots:
     void calling_the_floor();
    };

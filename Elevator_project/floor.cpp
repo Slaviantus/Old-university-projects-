@@ -38,6 +38,13 @@ Floor::Floor(int number, QGraphicsScene* scene)
     doorsTimeLine.setDuration(2000);// время движения в сек
     doorsTimeLine.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);//плавность
     connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
+    closing_doors_time_line.setFrameRange(0, 30);
+    closing_doors_time_line.setDuration(2000);
+    closing_doors_time_line.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);
+    connect(&closing_doors_time_line, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
+    connect(&closing_doors_time_line, &QTimeLine::finished, this, &Floor::emmiting_closing_door);
+
+
 
 
 
@@ -150,14 +157,14 @@ Floor::~Floor()
 
 void Floor::Opendoors()
 {
-    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
+    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
     doorsTimeLine.start();
 }
 
 void Floor::Closedoors()
 {
-    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
-    doorsTimeLine.start();
+    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
+    closing_doors_time_line.start();
 }
 
 QPoint Floor::Get_floor_stop_position()
@@ -176,5 +183,9 @@ void Floor::setDoorsPos_close(int x)
     leftdoor->setPos((point_left_door.x() - 30) + x, 30);
 }
 
+void Floor::emmiting_closing_door()
+{
+    emit doors_are_closed();
+}
 
 

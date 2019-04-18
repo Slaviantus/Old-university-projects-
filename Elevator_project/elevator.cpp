@@ -15,6 +15,7 @@ void Elevator::add_floor()
     scene->addItem(floor->Getgroup());
     floors_table.resize(floors.length());
     floors_table[floors_table.length() - 1] = false;
+    connect(floor, SIGNAL(doors_are_closed), this, SLOT(control_carry_on()));
     cout << "SCENA" << scene->height() << endl;
     cout << "Floor number " << floor->Get_number() << endl;
     //======================================
@@ -26,18 +27,26 @@ void Elevator::add_floor()
 
 void Elevator::calling_the_floor()
 {
-    cout << "HRENOTEN" << endl;
     number = sender()->objectName().toInt();
+    if(floors_table[number - 1] == false)
+    {
+
     for(int i = 0; i < floors_table.size(); i++)
     {
+
         if(i == number - 1)
         {
             floors_table[i] = true;
         }
+
     }
+
     if((state == STOPPING) && (check_floors()))
+
     {
-    Change_direction();
+        emit carry_on();
+    }
+
     }
 
 }
@@ -93,13 +102,20 @@ void Elevator::Change_direction()
                    floor_difference_up = abs(i + 1 - current_floor);
                 }
            }
-           for(int i = current_floor - 1; i == 0; i--)
-           {
+            if(current_floor == 1)
+            {
+                floor_difference_down = 0;
+            }
+            else
+            {
+                for(int i = current_floor - 1; i == 0; i--)
+            {
                 if(floors_table[i])
                 {
                   floor_difference_down = abs(i + 1 - current_floor);
                 }
-           }
+             }
+            }
             if(floor_difference_up >= floor_difference_down)
             {
                 direction = UP;
@@ -153,7 +169,6 @@ void Elevator::Check_moving()
         it -= floor_difference_down;
     }
     emit floor_Changed();
-    state = STOPPING;
     (*it)->Opendoors();
     timer_stopping.start();
 
@@ -161,12 +176,16 @@ void Elevator::Check_moving()
 
 void Elevator::Closing_doors()
 {
-    (*it)->Closedoors();
+    (*it)->Closedoors();   
+}
+
+void Elevator::control_carry_on()
+{
     if(check_floors())
-    {
+       {
+           emit carry_on();
 
-    }
-
+       }
 }
 
 Elevator::Elevator()
@@ -182,6 +201,7 @@ Elevator::Elevator()
     connect(&timer_one_floor, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
     connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
+    //connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
 
 
      pen.setColor(Qt::red);

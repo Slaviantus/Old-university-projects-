@@ -13,7 +13,7 @@
 
 class Floor : public QObject
 {
-    //Q_OBJECT
+    Q_OBJECT
 public:
     Floor(int number, QGraphicsScene *scene);
     void drawfloor();
@@ -50,11 +50,14 @@ private:
     QPixmap beam_pixmap;
     QPixmap background_pixmap;
     QTimeLine doorsTimeLine;
+    QTimeLine closing_doors_time_line;
     int number;
+signals:
+    void doors_are_closed();
 private slots:
     void setDoorsPos_open(int x);
     void setDoorsPos_close(int x);
-    int i;
+    void emmiting_closing_door();
 };
 
 #endif // FLOOR_H
