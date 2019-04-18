@@ -15,7 +15,7 @@ void Elevator::add_floor()
     scene->addItem(floor->Getgroup());
     floors_table.resize(floors.length());
     floors_table[floors_table.length() - 1] = false;
-    connect(floor, SIGNAL(doors_are_closed), this, SLOT(control_carry_on()));
+    connect(floor, SIGNAL(doors_are_closed()), this, SLOT(control_carry_on()));
     cout << "SCENA" << scene->height() << endl;
     cout << "Floor number " << floor->Get_number() << endl;
     //======================================
@@ -95,20 +95,27 @@ void Elevator::Go()
 void Elevator::Change_direction()
 {
             state = MOVING;
+            if(current_floor == floors.length())
+            {
+                floor_difference_up = 0;
+            }
+            else
+            {
             for(int i = current_floor - 1; i < floors_table.size(); i++)
             {
                if(floors_table[i])
                 {
                    floor_difference_up = abs(i + 1 - current_floor);
                 }
-           }
+            }
+            }
             if(current_floor == 1)
             {
                 floor_difference_down = 0;
             }
             else
             {
-                for(int i = current_floor - 1; i == 0; i--)
+                for(int i = current_floor - 1; i >= 0; i--)
             {
                 if(floors_table[i])
                 {
@@ -116,6 +123,22 @@ void Elevator::Change_direction()
                 }
              }
             }
+
+            if((floor_difference_up == 0) && (floor_difference_down != 0))
+            {
+                direction = DOWN;
+            }
+            if((floor_difference_down == 0) && (floor_difference_up != 0))
+            {
+                direction = UP;
+            }
+            if((floor_difference_up == 0) && (floor_difference_down == 0))
+            {
+                state = STOPPING;
+                direction = NOTHING;
+            }
+
+
             if(floor_difference_up >= floor_difference_down)
             {
                 direction = UP;
@@ -124,7 +147,10 @@ void Elevator::Change_direction()
             {
                 direction = DOWN;
           }
+            if(direction != NOTHING || state != STOPPING)
+            {
             Go();
+            }
 
 }
 
@@ -181,6 +207,7 @@ void Elevator::Closing_doors()
 
 void Elevator::control_carry_on()
 {
+    floors_table[current_floor - 1] = false;
     if(check_floors())
        {
            emit carry_on();
@@ -201,7 +228,7 @@ Elevator::Elevator()
     connect(&timer_one_floor, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
     connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
-    //connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
+   // connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
 
 
      pen.setColor(Qt::red);

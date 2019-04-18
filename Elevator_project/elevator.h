@@ -21,7 +21,8 @@ enum Elevator_state
 enum Elevator_direction
 {
     UP,
-    DOWN
+    DOWN,
+    NOTHING
 };
 
 
