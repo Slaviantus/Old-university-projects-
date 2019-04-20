@@ -11,6 +11,7 @@
 #include "QPixmap"
 #include "QTimeLine"
 #include "QFont"
+#include "QColor"
 
 class Floor : public QObject
 {
@@ -52,6 +53,7 @@ private:
     QPixmap plate_pixmap;
     QPixmap beam_pixmap;
     QPixmap background_pixmap;
+    QColor color_of_text_floor;
     QTimeLine doorsTimeLine;
     QTimeLine closing_doors_time_line;
     int number;

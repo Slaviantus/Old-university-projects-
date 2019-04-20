@@ -53,7 +53,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES +=
+RESOURCES += \
+    resources.qrc
 
 DISTFILES += \
     C:/Users/slava/Desktop/Новая папка/right_door.png

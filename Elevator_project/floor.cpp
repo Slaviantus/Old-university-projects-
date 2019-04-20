@@ -89,12 +89,15 @@ Floor::Floor(int number, QGraphicsScene* scene)
     background->setPixmap(background_pixmap);
 
     text_floor = new QGraphicsTextItem;
-    font_text_floor.setFamily(":/textures/fonts/entrance_font.ttf");
+    font_text_floor.setFamily("stencil");
     font_text_floor.setPointSize(12);
     text_floor->setZValue(1);
     text_floor->setFont(font_text_floor);
-    text_floor->setPlainText(QString(this->number) + " floor");
-    text_floor->setDefaultTextColor(Qt::red);
+    text_floor->setPlainText(QVariant(this->number).toString() + " floor");
+    color_of_text_floor.setRed(84);
+    color_of_text_floor.setGreen(144);
+    color_of_text_floor.setBlue(145);
+    text_floor->setDefaultTextColor(color_of_text_floor);
     text_floor->setPos(150, 60);
 
 
