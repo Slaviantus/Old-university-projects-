@@ -10,6 +10,7 @@
 #include "QGraphicsPixmapItem"
 #include "QPixmap"
 #include "QTimeLine"
+#include "QFont"
 
 class Floor : public QObject
 {
@@ -33,6 +34,7 @@ private:
     QGraphicsPixmapItem* leftdoor;
     QGraphicsPixmapItem* rightdoor;
     QGraphicsPixmapItem* background;
+    QGraphicsTextItem* text_floor;
     QGraphicsItemGroup* floorgroup;
     QPoint point_left_wall;
     QPoint point_right_wall;
@@ -42,6 +44,7 @@ private:
     QPoint point_beam;
     QPoint point_background;
     QPoint elevator_stop_point;
+    QFont font_text_floor;
     QPixmap right_door_pixmap;
     QPixmap left_door_pixmap;
     QPixmap left_wall_pixmap;

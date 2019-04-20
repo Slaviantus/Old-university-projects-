@@ -8,6 +8,8 @@
 #include "QTimeLine"
 #include "iostream"
 #include "gscene.h"
+#include "QGraphicsTextItem"
+#include "QFont"
 
 using namespace std;
 
@@ -86,6 +88,14 @@ Floor::Floor(int number, QGraphicsScene* scene)
     background_pixmap.load(":/textures/images/background.png");
     background->setPixmap(background_pixmap);
 
+    text_floor = new QGraphicsTextItem;
+    font_text_floor.setFamily(":/textures/fonts/entrance_font.ttf");
+    font_text_floor.setPointSize(12);
+    text_floor->setZValue(1);
+    text_floor->setFont(font_text_floor);
+    text_floor->setPlainText(QString(this->number) + " floor");
+    text_floor->setDefaultTextColor(Qt::red);
+    text_floor->setPos(150, 60);
 
 
     floorgroup = new QGraphicsItemGroup;
@@ -96,6 +106,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->addToGroup(leftdoor);
     floorgroup->addToGroup(rightdoor);
     floorgroup->addToGroup(background);
+    floorgroup->addToGroup(text_floor);
     floorgroup->setPos(0,-scene->height());
 
     elevator_stop_point.setX(342);

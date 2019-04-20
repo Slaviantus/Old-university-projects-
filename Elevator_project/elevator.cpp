@@ -10,7 +10,7 @@ using namespace std;
 
 void Elevator::add_floor()
 {
-    Floor *floor = new Floor(floors.length() + 1, scene);
+    Floor *floor = new Floor(floors.size() + 1, scene);
     floors.push_back(floor);
     scene->addItem(floor->Getgroup());
     floors_table.resize(floors.length());
