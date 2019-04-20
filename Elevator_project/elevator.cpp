@@ -58,25 +58,32 @@ void Elevator::floor_button_clicked(QString string)
 
 void Elevator::go_up(int y)
 {
-    elevator_shape->setPos(342, 30 - y);
+    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) - y);
 
 
-            //rightdoor->setPos(point_right_door.x() + x, 30);
+    //rightdoor->setPos(point_right_door.x() + x, 30);
+}
+
+void Elevator::go_down(int y)
+{
+    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) + y);
 }
 
 void Elevator::Go()
 {
     if(direction == UP)
     {
-    timer_one_floor.setDuration(3000 * floor_difference_up);
-    timer_one_floor.setFrameRange(0, 220 * floor_difference_up);
+    timer_up.setDuration(3000 * floor_difference_up);
+    timer_up.setFrameRange(0, 220 * floor_difference_up);
+    timer_up.start();
     }
     else
     {
-     timer_one_floor.setDuration(3000 * floor_difference_down);
-     timer_one_floor.setFrameRange(0, 220 * floor_difference_down);
+     timer_down.setDuration(3000 * floor_difference_down);
+     timer_down.setFrameRange(0, 220 * floor_difference_down);
+     timer_down.start();
     }
-    timer_one_floor.start();
+
 
 
 
@@ -95,7 +102,8 @@ void Elevator::Go()
 void Elevator::Change_direction()
 {
             state = MOVING;
-            if(current_floor == floors.length())
+            departure_floor = current_floor;
+            if(current_floor == floors.length()) // Если на последнем этаже
             {
                 floor_difference_up = 0;
             }
@@ -106,7 +114,12 @@ void Elevator::Change_direction()
                if(floors_table[i])
                 {
                    floor_difference_up = abs(i + 1 - current_floor);
+                   break;
                 }
+              else
+               {
+                   floor_difference_up = 0;
+               }
             }
             }
             if(current_floor == 1)
@@ -187,12 +200,12 @@ void Elevator::Check_moving()
     if(direction == UP)
     {
         current_floor += floor_difference_up;
-        it += floor_difference_up;
+        it += current_floor - 1;
     }
     else
     {
         current_floor -= floor_difference_down;
-        it -= floor_difference_down;
+        it += current_floor - 1;
     }
     emit floor_Changed();
     (*it)->Opendoors();
@@ -213,19 +226,27 @@ void Elevator::control_carry_on()
            emit carry_on();
 
        }
+    else
+    {
+        state = STOPPING;
+    }
 }
 
 Elevator::Elevator()
 {
     emit floor_Changed();
 
-    timer_one_floor.setFrameRange(0, 220);
-    timer_one_floor.setDuration(3000);
+    timer_up.setFrameRange(0, 220);
+    timer_up.setDuration(3000);
+    timer_down.setFrameRange(0, 220);
+    timer_down.setDuration(3000);
 
     timer_stopping.setDuration(5000);
 
-    connect(&timer_one_floor, &QTimeLine::frameChanged, this, &Elevator::go_up);
-    connect(&timer_one_floor, &QTimeLine::finished, this, &Elevator::Check_moving);
+    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
+    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
+    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
+    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
     connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
    // connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
