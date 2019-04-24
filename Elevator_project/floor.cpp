@@ -34,6 +34,8 @@ Floor::Floor(int number, QGraphicsScene* scene)
     point_plate.setY(200);
     point_background.setX(342);
     point_background.setY(30);
+    point_button_plate.setX(320);
+    point_button_plate.setY(90);
 
 
     doorsTimeLine.setFrameRange(0, 30);//диапазон изменённых значений
@@ -45,7 +47,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
     closing_doors_time_line.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);
     connect(&closing_doors_time_line, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
     connect(&closing_doors_time_line, &QTimeLine::finished, this, &Floor::emmiting_closing_door);
-
 
 
 
@@ -87,6 +88,12 @@ Floor::Floor(int number, QGraphicsScene* scene)
     background->setZValue(-2);
     background_pixmap.load(":/textures/images/background.png");
     background->setPixmap(background_pixmap);
+    button_plate = new Button_plate;
+    button_plate->setPos(point_button_plate);
+    button_plate->setZValue(1);
+    button_plate_pixmap.load(":/textures/images/buttonplate.PNG");
+    button_plate->setPixmap(button_plate_pixmap);
+
 
     text_floor = new QGraphicsTextItem;
     font_text_floor.setFamily("stencil");
@@ -110,6 +117,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->addToGroup(rightdoor);
     floorgroup->addToGroup(background);
     floorgroup->addToGroup(text_floor);
+    floorgroup->addToGroup(button_plate);
     floorgroup->setPos(0,-scene->height());
 
     elevator_stop_point.setX(342);

@@ -56,6 +56,7 @@ private:
     QGraphicsLineItem* horizontal_up;
     QGraphicsLineItem* horizontal_down;
     QGraphicsItemGroup* elevator_shape;
+    int iup;
 
 
 signals:

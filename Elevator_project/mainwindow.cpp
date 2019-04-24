@@ -27,6 +27,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     floor_button_name = 0;
+
+    //==================experiment===================
+
+    QPixmap pixmap;
+    pixmap.load(":/textures/images/tardis_experiment.png");
+    ui->pointer_label->setPixmap(pixmap);
+
+    //==================experiment end===================
+
+
     on_add_floor_clicked();
     on_add_floor_clicked();
 }

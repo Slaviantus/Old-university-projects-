@@ -12,6 +12,7 @@
 #include "QTimeLine"
 #include "QFont"
 #include "QColor"
+#include "button_plate.h"
 
 class Floor : public QObject
 {
@@ -36,6 +37,7 @@ private:
     QGraphicsPixmapItem* rightdoor;
     QGraphicsPixmapItem* background;
     QGraphicsTextItem* text_floor;
+    Button_plate* button_plate;
     QGraphicsItemGroup* floorgroup;
     QPoint point_left_wall;
     QPoint point_right_wall;
@@ -45,6 +47,7 @@ private:
     QPoint point_beam;
     QPoint point_background;
     QPoint elevator_stop_point;
+    QPoint point_button_plate;
     QFont font_text_floor;
     QPixmap right_door_pixmap;
     QPixmap left_door_pixmap;
@@ -53,6 +56,7 @@ private:
     QPixmap plate_pixmap;
     QPixmap beam_pixmap;
     QPixmap background_pixmap;
+    QPixmap button_plate_pixmap;
     QColor color_of_text_floor;
     QTimeLine doorsTimeLine;
     QTimeLine closing_doors_time_line;

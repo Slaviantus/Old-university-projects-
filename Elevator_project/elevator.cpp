@@ -16,13 +16,6 @@ void Elevator::add_floor()
     floors_table.resize(floors.length());
     floors_table[floors_table.length() - 1] = false;
     connect(floor, SIGNAL(doors_are_closed()), this, SLOT(control_carry_on()));
-    cout << "SCENA" << scene->height() << endl;
-    cout << "Floor number " << floor->Get_number() << endl;
-    //======================================
-//    current_floor++;
-//    emit floor_Changed();
-
-
 }
 
 void Elevator::calling_the_floor()
@@ -59,6 +52,12 @@ void Elevator::floor_button_clicked(QString string)
 void Elevator::go_up(int y)
 {
     elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) - y);
+    if(timer_up.currentTime() == iup * 3000)
+    {
+        //emit floor_Changed();
+        //iup++;
+        cout << "Exterminate!" << endl;
+    }
 
 
     //rightdoor->setPos(point_right_door.x() + x, 30);
@@ -69,12 +68,15 @@ void Elevator::go_down(int y)
     elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) + y);
 }
 
+
+
 void Elevator::Go()
 {
     if(direction == UP)
     {
     timer_up.setDuration(3000 * floor_difference_up);
     timer_up.setFrameRange(0, 220 * floor_difference_up);
+    iup = 1;
     timer_up.start();
     }
     else
@@ -84,20 +86,9 @@ void Elevator::Go()
      timer_down.start();
     }
 
-
-
-
-
-
-
-
-
-
-//    doorsTimeLine.setFrameRange(0, 30);//диапазон изменённых значений
-//    doorsTimeLine.setDuration(2000);// время движения в сек
-//    doorsTimeLine.setCurveShape(QTimeLine::CurveShape::EaseInOutCurve);//плавность
-//    connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
 }
+
+
 
 void Elevator::Change_direction()
 {
@@ -133,6 +124,11 @@ void Elevator::Change_direction()
                 if(floors_table[i])
                 {
                   floor_difference_down = abs(i + 1 - current_floor);
+                  break;
+                }
+                else
+                {
+                    floor_difference_down = 0;
                 }
              }
             }
@@ -179,12 +175,6 @@ bool Elevator::check_floors()
     return false;
 }
 
-void Elevator::Stopping()
-{
-
-
-
-}
 
 void Elevator::Elevator_manager()
 {
@@ -207,7 +197,7 @@ void Elevator::Check_moving()
         current_floor -= floor_difference_down;
         it += current_floor - 1;
     }
-    emit floor_Changed();
+    //emit floor_Changed();
     (*it)->Opendoors();
     timer_stopping.start();
 
@@ -254,6 +244,7 @@ Elevator::Elevator()
 
      pen.setColor(Qt::red);
      pen.setWidth(3);
+
 
 
      left_vertical = new QGraphicsLineItem;
@@ -304,6 +295,7 @@ void Elevator::setscene(QGraphicsScene *pointer_scene)
 
 int Elevator::get_current_floor()
 {
+
     return current_floor;
 }
 
