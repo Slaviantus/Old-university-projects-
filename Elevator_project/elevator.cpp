@@ -1,6 +1,7 @@
 #include "elevator.h"
 #include "iostream"
 #include "floor.h"
+#include "QTimer"
 
 
 using namespace std;
@@ -20,6 +21,10 @@ void Elevator::add_floor()
 
 void Elevator::calling_the_floor()
 {
+    //============experiment=============
+    timer_up->start();
+    cout << "Timer started" << endl;
+     //============experiment_end=============
     number = sender()->objectName().toInt();
     if(floors_table[number - 1] == false)
     {
@@ -49,18 +54,29 @@ void Elevator::floor_button_clicked(QString string)
     cout << "KEK" << endl;
 }
 
-void Elevator::go_up(int y)
-{
-    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) - y);
-    if(timer_up.currentTime() == iup * 3000)
-    {
-        //emit floor_Changed();
-        //iup++;
-        cout << "Exterminate!" << endl;
-    }
+//void Elevator::go_up(int y)
+//{
+//    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) - y);
+//    if(timer_up.currentTime() == iup * 3000)
+//    {
+//        //emit floor_Changed();
+//        //iup++;
+//        cout << "Exterminate!" << endl;
+//    }
 
 
     //rightdoor->setPos(point_right_door.x() + x, 30);
+//}
+
+void Elevator::go_up_exp()
+{
+    for(int u = 0; u < 1; u++)
+    {
+        new_y = elevator_shape->pos().y();
+        new_y--;
+        new_position.setY(new_y);
+        elevator_shape->setPos(new_position);
+    }
 }
 
 void Elevator::go_down(int y)
@@ -72,19 +88,19 @@ void Elevator::go_down(int y)
 
 void Elevator::Go()
 {
-    if(direction == UP)
-    {
-    timer_up.setDuration(3000 * floor_difference_up);
-    timer_up.setFrameRange(0, 220 * floor_difference_up);
-    iup = 1;
-    timer_up.start();
-    }
-    else
-    {
-     timer_down.setDuration(3000 * floor_difference_down);
-     timer_down.setFrameRange(0, 220 * floor_difference_down);
-     timer_down.start();
-    }
+//    if(direction == UP)
+//    {
+//    timer_up.setDuration(3000 * floor_difference_up);
+//    timer_up.setFrameRange(0, 220 * floor_difference_up);
+//    iup = 1;
+//    timer_up.start();
+//    }
+//    else
+//    {
+//     timer_down.setDuration(3000 * floor_difference_down);
+//     timer_down.setFrameRange(0, 220 * floor_difference_down);
+//     timer_down.start();
+//    }
 
 }
 
@@ -136,25 +152,30 @@ void Elevator::Change_direction()
             if((floor_difference_up == 0) && (floor_difference_down != 0))
             {
                 direction = DOWN;
+                emit pointer_down();
             }
             if((floor_difference_down == 0) && (floor_difference_up != 0))
             {
                 direction = UP;
+                emit pointer_up();
             }
             if((floor_difference_up == 0) && (floor_difference_down == 0))
             {
                 state = STOPPING;
                 direction = NOTHING;
+                emit no_pointer();
             }
 
 
             if(floor_difference_up >= floor_difference_down)
             {
                 direction = UP;
+                emit pointer_up();
             }
             else
             {
                 direction = DOWN;
+                 emit pointer_down();
           }
             if(direction != NOTHING || state != STOPPING)
             {
@@ -187,6 +208,7 @@ void Elevator::Elevator_manager()
 void Elevator::Check_moving()
 {
     it = floors.begin();
+    emit no_pointer();
     if(direction == UP)
     {
         current_floor += floor_difference_up;
@@ -226,17 +248,23 @@ Elevator::Elevator()
 {
     emit floor_Changed();
 
-    timer_up.setFrameRange(0, 220);
-    timer_up.setDuration(3000);
-    timer_down.setFrameRange(0, 220);
-    timer_down.setDuration(3000);
+//    timer_up.setFrameRange(0, 220);
+//    timer_up.setDuration(3000);
+//    timer_down.setFrameRange(0, 220);
+//    timer_down.setDuration(3000);
+
+    timer_up = new QTimer(this);
+    connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up_exp()));
+    timer_up->setInterval(10);
+    i = 0;
+    new_position.setX(342);
 
     timer_stopping.setDuration(5000);
 
-    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
-    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
-    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
-    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);
+//    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
+//    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
+//    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
+//    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
     connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
    // connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);

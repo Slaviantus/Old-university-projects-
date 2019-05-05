@@ -34,7 +34,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     point_plate.setY(200);
     point_background.setX(342);
     point_background.setY(30);
-    point_button_plate.setX(320);
+    point_button_plate.setX(305);
     point_button_plate.setY(90);
 
 

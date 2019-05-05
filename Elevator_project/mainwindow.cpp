@@ -24,18 +24,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lcdnumber->setAutoFillBackground(true);
     ui->lcdnumber->setPalette(pal);
     connect(&ui->graphicsView->elevator, SIGNAL(floor_Changed()), this, SLOT(indicator()));
+    connect(&ui->graphicsView->elevator, SIGNAL(pointer_up()), this, SLOT(show_pointer_up()));
+    connect(&ui->graphicsView->elevator, SIGNAL(pointer_down()), this, SLOT(show_pointer_down()));
+    connect(&ui->graphicsView->elevator, SIGNAL(no_pointer()), this, SLOT(show_no_pointer()));
 
 
     floor_button_name = 0;
 
-    //==================experiment===================
-
-    QPixmap pixmap;
-    pixmap.load(":/textures/images/tardis_experiment.png");
-    ui->pointer_label->setPixmap(pixmap);
-
-    //==================experiment end===================
-
+    pointer_up_pixmap.load(":/textures/images/pointer_up.png");
+    pointer_down_pixmap.load(":/textures/images/pointer_down.png");
+    no_pointer_pixmap.load(":/textures/images/pointer_null.png");
+    ui->pointer_label->setPixmap(no_pointer_pixmap);
 
     on_add_floor_clicked();
     on_add_floor_clicked();
@@ -50,6 +49,21 @@ MainWindow::~MainWindow()
 void MainWindow::indicator()
 {
     ui->lcdnumber->display(ui->graphicsView->elevator.get_current_floor());
+}
+
+void MainWindow::show_pointer_up()
+{
+    ui->pointer_label->setPixmap(pointer_up_pixmap);
+}
+
+void MainWindow::show_pointer_down()
+{
+    ui->pointer_label->setPixmap(pointer_down_pixmap);
+}
+
+void MainWindow::show_no_pointer()
+{
+    ui->pointer_label->setPixmap(no_pointer_pixmap);
 }
 
 

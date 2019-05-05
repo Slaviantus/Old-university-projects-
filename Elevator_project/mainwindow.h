@@ -7,6 +7,7 @@
 #include "QGraphicsScene"
 #include "gscene.h"
 #include "elevator.h"
+#include "QPixmap"
 
 
 namespace Ui {
@@ -23,6 +24,9 @@ public:
 
 private slots:
 void indicator();
+void show_pointer_up();
+void show_pointer_down();
+void show_no_pointer();
 
 public slots:
 void on_add_floor_clicked();
@@ -32,6 +36,10 @@ private:
     QPainter Painter;
     Elevator *elevator;
     int floor_button_name;
+    QPixmap pointer_up_pixmap;
+    QPixmap pointer_down_pixmap;
+    QPixmap no_pointer_pixmap;
+
 
 
 };

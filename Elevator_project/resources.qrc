@@ -9,6 +9,8 @@
         <file>images/background.png</file>
         <file>fonts/entrance_font.ttf</file>
         <file>images/buttonplate.PNG</file>
-        <file>images/tardis_experiment.png</file>
+        <file>images/pointer_down.png</file>
+        <file>images/pointer_up.png</file>
+        <file>images/pointer_null.png</file>
     </qresource>
 </RCC>
