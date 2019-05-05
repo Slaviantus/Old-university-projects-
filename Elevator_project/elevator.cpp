@@ -21,10 +21,6 @@ void Elevator::add_floor()
 
 void Elevator::calling_the_floor()
 {
-    //============experiment=============
-    timer_up->start();
-    cout << "Timer started" << endl;
-     //============experiment_end=============
     number = sender()->objectName().toInt();
     if(floors_table[number - 1] == false)
     {
@@ -76,6 +72,18 @@ void Elevator::go_up_exp()
         new_y--;
         new_position.setY(new_y);
         elevator_shape->setPos(new_position);
+        if(new_y == (*it)->Get_floor_stop_position().y() - 220)
+        {
+            cout << "Yeah!!" << endl;
+            it++;
+            current_floor++;
+            emit floor_Changed();
+            floor_difference_up--;
+            if(floor_difference_up == 0)
+            {
+                timer_up->stop();
+            }
+        }
     }
 }
 
@@ -101,6 +109,10 @@ void Elevator::Go()
 //     timer_down.setFrameRange(0, 220 * floor_difference_down);
 //     timer_down.start();
 //    }
+    if(direction == UP)
+    {
+        timer_up->start();
+    }
 
 }
 
@@ -258,7 +270,7 @@ Elevator::Elevator()
     timer_up->setInterval(10);
     i = 0;
     new_position.setX(342);
-
+    it = floors.begin();
     timer_stopping.setDuration(5000);
 
 //    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
@@ -323,7 +335,6 @@ void Elevator::setscene(QGraphicsScene *pointer_scene)
 
 int Elevator::get_current_floor()
 {
-
     return current_floor;
 }
 
