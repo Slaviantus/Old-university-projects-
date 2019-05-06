@@ -58,21 +58,7 @@ void Elevator::floor_button_clicked(QString string)
     cout << "KEK" << endl;
 }
 
-//void Elevator::go_up(int y)
-//{
-//    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) - y);
-//    if(timer_up.currentTime() == iup * 3000)
-//    {
-//        //emit floor_Changed();
-//        //iup++;
-//        cout << "Exterminate!" << endl;
-//    }
-
-
-    //rightdoor->setPos(point_right_door.x() + x, 30);
-//}
-
-void Elevator::go_up_exp()
+void Elevator::go_up()
 {
     for(int u = 0; u < 1; u++)
     {
@@ -82,7 +68,6 @@ void Elevator::go_up_exp()
         elevator_shape->setPos(new_position);
         if(new_y == stop_points[current_floor])
         {
-            cout << "Yeah!!" << endl;
             it++;
             current_floor++;
             emit floor_Changed();
@@ -96,28 +81,9 @@ void Elevator::go_up_exp()
     }
 }
 
-//void Elevator::go_down(int y)
-//{
-//    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) + y);
-//}
-
-
 
 void Elevator::Go()
 {
-//    if(direction == UP)
-//    {
-//    timer_up.setDuration(3000 * floor_difference_up);
-//    timer_up.setFrameRange(0, 220 * floor_difference_up);
-//    iup = 1;
-//    timer_up.start();
-//    }
-//    else
-//    {
-//     timer_down.setDuration(3000 * floor_difference_down);
-//     timer_down.setFrameRange(0, 220 * floor_difference_down);
-//     timer_down.start();
-//    }
     if(direction == UP)
     {
         timer_up->start();
@@ -218,33 +184,19 @@ bool Elevator::check_floors()
 }
 
 
-//void Elevator::Elevator_manager()
-//{
-// while(check_floors())
-// {
-//     Change_direction();
-// }
-//}
-
 void Elevator::Check_moving()
 {
-    cout <<"A VOT I YA" << endl;
-    //it = floors.begin();
     emit no_pointer();
-//    if(direction == UP)
-//    {
-//        current_floor += floor_difference_up;
-//        it += current_floor - 1;
-//    }
-//    else
-//    {
-//        current_floor -= floor_difference_down;
-//        it += current_floor - 1;
-//    }
-    //emit floor_Changed();
-    (*it)->Opendoors();
+    it = floors.begin();
+    for(int j = 0; j < floors.size(); j++)
+    {
+        if(j == current_floor - 1)
+        {
+            (*it)->Opendoors();
+        }
+        it++;
+    }
     timer_stopping.start();
-
 }
 
 void Elevator::Closing_doors()
@@ -269,14 +221,8 @@ void Elevator::control_carry_on()
 Elevator::Elevator()
 {
     emit floor_Changed();
-
-//    timer_up.setFrameRange(0, 220);
-//    timer_up.setDuration(3000);
-//    timer_down.setFrameRange(0, 220);
-//    timer_down.setDuration(3000);
-
     timer_up = new QTimer(this);
-    connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up_exp()));
+    connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up()));
     timer_up->setInterval(10);
     i = 0;
     new_position.setX(342);
@@ -341,7 +287,6 @@ void Elevator::setscene(QGraphicsScene *pointer_scene)
     it = floors.begin();
     elevator_shape->setPos((*it)->Get_floor_stop_position());
     scene->addItem(elevator_shape);
-//Go();
 }
 
 int Elevator::get_current_floor()

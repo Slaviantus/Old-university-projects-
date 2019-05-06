@@ -42,8 +42,6 @@ private:
     QList <Floor*> floors;
     QList <Floor*>::iterator it;
     QGraphicsScene *scene;
-   // QTimeLine timer_up;
-   // QTimeLine timer_down;
     QTimer *timer_up;
     QTimeLine timer_stopping;
     int floor_difference_up;
@@ -83,9 +81,7 @@ signals:
     void add_floor();
 private slots:
     void floor_button_clicked(QString string);
-   // void go_up(int y);
-    void go_up_exp();
-    //void go_down(int y);
+    void go_up();
     void Check_moving();
     void Closing_doors();
     void control_carry_on();
