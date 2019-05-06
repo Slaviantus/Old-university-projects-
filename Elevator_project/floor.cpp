@@ -189,9 +189,14 @@ void Floor::Closedoors()
     closing_doors_time_line.start();
 }
 
-QPoint Floor::Get_floor_stop_position()
+QPoint Floor::Get_floor_stop_position() const
 {
     return elevator_stop_point;
+}
+
+int Floor::Get_Y_position() const
+{
+    return elevator_stop_point.y();
 }
 
 int Floor::Get_number()

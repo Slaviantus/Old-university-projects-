@@ -33,6 +33,7 @@ class Elevator : public QObject
     Q_OBJECT
 private:
     QVector<bool> floors_table;
+    QVector<int> stop_points;
     void Go();
     void Change_direction();
     bool check_floors();
@@ -59,9 +60,11 @@ private:
     QGraphicsLineItem* horizontal_down;
     QGraphicsItemGroup* elevator_shape;
     QPoint new_position;
+    QPoint stop_position;
     int new_y;
     int iup;
     int i;
+
 
 
 signals:
@@ -71,6 +74,7 @@ signals:
     void pointer_up();
     void pointer_down();
     void no_pointer();
+    void stop();
 
   public:
     Elevator();
@@ -81,7 +85,7 @@ private slots:
     void floor_button_clicked(QString string);
    // void go_up(int y);
     void go_up_exp();
-    void go_down(int y);
+    //void go_down(int y);
     void Check_moving();
     void Closing_doors();
     void control_carry_on();

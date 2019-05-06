@@ -16,6 +16,14 @@ void Elevator::add_floor()
     scene->addItem(floor->Getgroup());
     floors_table.resize(floors.length());
     floors_table[floors_table.length() - 1] = false;
+    if(floors.size() == 1)
+    {
+        stop_points.push_back(30);
+    }
+    else
+    {
+        stop_points.push_back(stop_points[floors.size() - 2] - 220);
+    }
     connect(floor, SIGNAL(doors_are_closed()), this, SLOT(control_carry_on()));
 }
 
@@ -72,7 +80,7 @@ void Elevator::go_up_exp()
         new_y--;
         new_position.setY(new_y);
         elevator_shape->setPos(new_position);
-        if(new_y == (*it)->Get_floor_stop_position().y() - 220)
+        if(new_y == stop_points[current_floor])
         {
             cout << "Yeah!!" << endl;
             it++;
@@ -82,15 +90,16 @@ void Elevator::go_up_exp()
             if(floor_difference_up == 0)
             {
                 timer_up->stop();
+                emit stop();
             }
         }
     }
 }
 
-void Elevator::go_down(int y)
-{
-    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) + y);
-}
+//void Elevator::go_down(int y)
+//{
+//    elevator_shape->setPos(342, (30 - 220 * (departure_floor - 1)) + y);
+//}
 
 
 
@@ -209,28 +218,29 @@ bool Elevator::check_floors()
 }
 
 
-void Elevator::Elevator_manager()
-{
- while(check_floors())
- {
-     Change_direction();
- }
-}
+//void Elevator::Elevator_manager()
+//{
+// while(check_floors())
+// {
+//     Change_direction();
+// }
+//}
 
 void Elevator::Check_moving()
 {
-    it = floors.begin();
+    cout <<"A VOT I YA" << endl;
+    //it = floors.begin();
     emit no_pointer();
-    if(direction == UP)
-    {
-        current_floor += floor_difference_up;
-        it += current_floor - 1;
-    }
-    else
-    {
-        current_floor -= floor_difference_down;
-        it += current_floor - 1;
-    }
+//    if(direction == UP)
+//    {
+//        current_floor += floor_difference_up;
+//        it += current_floor - 1;
+//    }
+//    else
+//    {
+//        current_floor -= floor_difference_down;
+//        it += current_floor - 1;
+//    }
     //emit floor_Changed();
     (*it)->Opendoors();
     timer_stopping.start();
@@ -275,6 +285,7 @@ Elevator::Elevator()
 
 //    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
 //    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
+    connect(this, &Elevator::stop, this, &Elevator::Check_moving);
 //    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
 //    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);

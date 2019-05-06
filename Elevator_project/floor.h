@@ -24,7 +24,8 @@ public:
     void setnumber(int num);
     void Opendoors();
     void Closedoors();
-    QPoint Get_floor_stop_position();
+    QPoint Get_floor_stop_position() const;
+    int Get_Y_position() const;
     int Get_number();
     ~Floor();
 private:

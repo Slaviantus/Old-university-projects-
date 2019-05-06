@@ -75,6 +75,8 @@ void MainWindow::on_add_floor_clicked()
     pushButton->setText(QVariant(floor_button_name).toString());
     pushButton->setObjectName(QVariant(floor_button_name).toString());
     connect(pushButton, SIGNAL(clicked()), &ui->graphicsView->elevator, SLOT(calling_the_floor()));
-    ui->verticalLayout_2->addWidget(pushButton);
+    //ui->->addWidget(pushButton);
+    ui->floors_layout->addWidget(pushButton);
+    cout << "CLICKED" << endl;
 }
 

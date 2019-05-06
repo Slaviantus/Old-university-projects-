@@ -50,14 +50,22 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="add_floor">
-       <property name="text">
-        <string>add floor</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QScrollArea" name="scrollArea">
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="lineWidth">
+        <number>2</number>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       </property>
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
@@ -66,22 +74,29 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>177</width>
-          <height>558</height>
+          <width>154</width>
+          <height>552</height>
          </rect>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget_2">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>10</y>
-           <width>161</width>
-           <height>661</height>
+           <y>9</y>
+           <width>141</width>
+           <height>531</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2"/>
+         <layout class="QVBoxLayout" name="floors_layout"/>
         </widget>
        </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add_floor">
+       <property name="text">
+        <string>add floor</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -189,12 +204,12 @@
    <slot>add_floor()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>870</x>
-     <y>149</y>
+     <x>871</x>
+     <y>183</y>
     </hint>
     <hint type="destinationlabel">
-     <x>788</x>
-     <y>203</y>
+     <x>780</x>
+     <y>236</y>
     </hint>
    </hints>
   </connection>
