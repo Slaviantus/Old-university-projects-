@@ -81,12 +81,39 @@ void Elevator::go_up()
     }
 }
 
+void Elevator::go_down()
+{
+    for(int u = 0; u < 1; u++)
+    {
+        new_y = elevator_shape->pos().y();
+        new_y++;
+        new_position.setY(new_y);
+        elevator_shape->setPos(new_position);
+        if(new_y == stop_points[current_floor - 2])
+        {
+            it--;
+            current_floor--;
+            emit floor_Changed();
+            floor_difference_down--;
+            if(floor_difference_down == 0)
+            {
+                timer_down->stop();
+                emit stop();
+            }
+        }
+    }
+}
+
 
 void Elevator::Go()
 {
     if(direction == UP)
     {
         timer_up->start();
+    }
+    if(direction == DOWN)
+    {
+        timer_down->start();
     }
 
 }
@@ -193,6 +220,7 @@ void Elevator::Check_moving()
         if(j == current_floor - 1)
         {
             (*it)->Opendoors();
+            break;
         }
         it++;
     }
@@ -201,7 +229,15 @@ void Elevator::Check_moving()
 
 void Elevator::Closing_doors()
 {
-    (*it)->Closedoors();   
+    it = floors.begin();
+    for(int j = 0; j < floors.size(); j++)
+    {
+        if(j == current_floor - 1)
+        {
+            (*it)->Closedoors();
+        }
+        it++;
+    }
 }
 
 void Elevator::control_carry_on()
@@ -225,6 +261,9 @@ Elevator::Elevator()
     connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up()));
     timer_up->setInterval(10);
     i = 0;
+    timer_down = new QTimer(this);
+    connect(timer_down, SIGNAL(timeout()), this, SLOT(go_down()));
+    timer_down->setInterval(10);
     new_position.setX(342);
     it = floors.begin();
     timer_stopping.setDuration(5000);
