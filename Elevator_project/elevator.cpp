@@ -25,6 +25,9 @@ void Elevator::add_floor()
         stop_points.push_back(stop_points[floors.size() - 2] - 220);
     }
     connect(floor, SIGNAL(doors_are_closed()), this, SLOT(control_carry_on()));
+    connect(floor, SIGNAL(button_clicked()), this, SLOT(floor_button_clicked()));
+    //    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
+
 }
 
 void Elevator::calling_the_floor()
@@ -53,10 +56,6 @@ void Elevator::calling_the_floor()
 
 }
 
-void Elevator::floor_button_clicked(QString string)
-{
-    cout << "KEK" << endl;
-}
 
 void Elevator::go_up()
 {
@@ -66,6 +65,18 @@ void Elevator::go_up()
         new_y--;
         new_position.setY(new_y);
         elevator_shape->setPos(new_position);
+        if(new_y == stop_points[current_floor - 1] - 5)
+        {
+            timer_up->setInterval(20);
+        }
+        if(new_y == stop_points[current_floor - 1] - 10)
+        {
+            timer_up->setInterval(15);
+        }
+        if(new_y == stop_points[current_floor - 1] - 20)
+        {
+            timer_up->setInterval(10);
+        }
         if(new_y == stop_points[current_floor])
         {
             it++;
@@ -254,12 +265,44 @@ void Elevator::control_carry_on()
     }
 }
 
+void Elevator::floor_button_clicked()
+{
+    it = floors.begin();
+    for(int j = 0; j < floors.size(); j++)
+    {
+        if((*it)->is_button_clicked())
+        {
+            for(int i = 0; i < floors_table.size(); i++)
+            {
+                if(i == j)
+               {
+                  floors_table[i] = true;
+                }
+            }
+
+        }
+        it++;
+    }
+
+    if(state == STOPPING)
+
+    {
+        emit carry_on();
+    }
+    it = floors.begin();
+    for(int j = 0; j < floors.size(); j++)
+    {
+        (*it)->cancel_button_clicked();
+        it++;
+    }
+}
+
 Elevator::Elevator()
 {
     emit floor_Changed();
     timer_up = new QTimer(this);
     connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up()));
-    timer_up->setInterval(10);
+    timer_up->setInterval(40);
     i = 0;
     timer_down = new QTimer(this);
     connect(timer_down, SIGNAL(timeout()), this, SLOT(go_down()));
@@ -267,9 +310,8 @@ Elevator::Elevator()
     new_position.setX(342);
     it = floors.begin();
     timer_stopping.setDuration(5000);
-
 //    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
-//    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
+    //    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(this, &Elevator::stop, this, &Elevator::Check_moving);
 //    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
 //    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);

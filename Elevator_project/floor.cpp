@@ -123,6 +123,11 @@ Floor::Floor(int number, QGraphicsScene* scene)
     elevator_stop_point.setX(342);
     elevator_stop_point.setY(-scene->height() + 30);
 
+    button_plate_clicked = false;
+
+    connect(button_plate, SIGNAL(button_clicked()), this, SLOT(emmiting_button_clicked()));
+    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
+
 
 //    auto timer = new QTimer(this);
 //    connect(timer, &QTimer::timeout, [this]()
@@ -199,9 +204,19 @@ int Floor::Get_Y_position() const
     return elevator_stop_point.y();
 }
 
+bool Floor::is_button_clicked()
+{
+    return button_plate_clicked;
+}
+
 int Floor::Get_number()
 {
     return number;
+}
+
+void Floor::cancel_button_clicked()
+{
+    button_plate_clicked = false;
 }
 
 void Floor::setDoorsPos_close(int x)
@@ -213,6 +228,12 @@ void Floor::setDoorsPos_close(int x)
 void Floor::emmiting_closing_door()
 {
     emit doors_are_closed();
+}
+
+void Floor::emmiting_button_clicked()
+{
+    button_plate_clicked = true;
+    emit button_clicked();
 }
 
 

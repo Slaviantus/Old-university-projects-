@@ -2,6 +2,7 @@
 #include "iostream"
 #include "QGraphicsView"
 #include "QGraphicsItem"
+#include <QEvent>
 
 using namespace std;
 
@@ -12,7 +13,10 @@ Button_plate::Button_plate()
 
 }
 
-void Button_plate::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+bool Button_plate::sceneEvent(QEvent *event)
 {
-    cout << "Hernya!!! forever!" << endl;
+    if (event->type() == QEvent::GraphicsSceneMouseRelease)
+    {
+        emit button_clicked();
+    }
 }

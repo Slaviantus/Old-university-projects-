@@ -81,12 +81,13 @@ signals:
     int get_current_floor();
     void add_floor();
 private slots:
-    void floor_button_clicked(QString string);
     void go_up();
     void go_down();
     void Check_moving();
     void Closing_doors();
     void control_carry_on();
+    void floor_button_clicked();
+
 public slots:
     void calling_the_floor();
    };

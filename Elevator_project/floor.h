@@ -26,7 +26,9 @@ public:
     void Closedoors();
     QPoint Get_floor_stop_position() const;
     int Get_Y_position() const;
+    bool is_button_clicked();
     int Get_number();
+    void cancel_button_clicked();
     ~Floor();
 private:
     QPen floorpen;
@@ -62,12 +64,15 @@ private:
     QTimeLine doorsTimeLine;
     QTimeLine closing_doors_time_line;
     int number;
+    bool button_plate_clicked;
 signals:
     void doors_are_closed();
+    void button_clicked();
 private slots:
     void setDoorsPos_open(int x);
     void setDoorsPos_close(int x);
     void emmiting_closing_door();
+    void emmiting_button_clicked();
 };
 
 #endif // FLOOR_H
