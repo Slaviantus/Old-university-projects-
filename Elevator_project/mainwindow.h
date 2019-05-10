@@ -28,6 +28,8 @@ void show_pointer_up();
 void show_pointer_down();
 void show_no_pointer();
 
+void on_hide_show_clicked();
+
 public slots:
 void on_add_floor_clicked();
 

@@ -56,6 +56,16 @@ void Elevator::calling_the_floor()
 
 }
 
+void Elevator::show_elevator()
+{
+    it = floors.begin();
+    for(int j = 0; j < floors.size(); j++)
+    {
+        (*it)->transparency();
+        it++;
+    }
+}
+
 
 void Elevator::go_up()
 {

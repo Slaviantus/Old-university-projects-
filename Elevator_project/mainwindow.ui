@@ -75,7 +75,7 @@
           <x>0</x>
           <y>0</y>
           <width>154</width>
-          <height>552</height>
+          <height>523</height>
          </rect>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -90,6 +90,13 @@
          <layout class="QVBoxLayout" name="floors_layout"/>
         </widget>
        </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="hide_show">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
       </widget>
      </item>
      <item>

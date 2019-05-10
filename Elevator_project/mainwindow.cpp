@@ -80,3 +80,8 @@ void MainWindow::on_add_floor_clicked()
     cout << "CLICKED" << endl;
 }
 
+
+void MainWindow::on_hide_show_clicked()
+{
+    ui->graphicsView->elevator.show_elevator();
+}

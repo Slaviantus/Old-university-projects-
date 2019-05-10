@@ -29,6 +29,7 @@ public:
     bool is_button_clicked();
     int Get_number();
     void cancel_button_clicked();
+    void transparency();
     ~Floor();
 private:
     QPen floorpen;

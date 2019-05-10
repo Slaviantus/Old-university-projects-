@@ -114,8 +114,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->addToGroup(text_floor);
     floorgroup->addToGroup(button_plate);
     floorgroup->setPos(0,-scene->height());
-    floorgroup->setOpacity(0.5);
-
     elevator_stop_point.setX(342);
     elevator_stop_point.setY(-scene->height() + 30);
 
@@ -193,6 +191,11 @@ int Floor::Get_number()
 void Floor::cancel_button_clicked()
 {
     button_plate_clicked = false;
+}
+
+void Floor::transparency()
+{
+    floorgroup->setOpacity(0.5);
 }
 
 void Floor::setDoorsPos_close(int x)

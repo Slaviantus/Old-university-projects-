@@ -93,6 +93,7 @@ private slots:
 
 public slots:
     void calling_the_floor();
+    void show_elevator();
    };
 
 #endif // ELEVATOR_H
