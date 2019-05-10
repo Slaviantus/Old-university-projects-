@@ -320,7 +320,7 @@ Elevator::Elevator()
    // connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
 
 
-     pen.setColor(Qt::red);
+     pen.setColor(Qt::black);
      pen.setWidth(3);
 
 
@@ -328,26 +328,33 @@ Elevator::Elevator()
      left_vertical = new QGraphicsLineItem;
      left_vertical->setPen(pen);
      left_vertical->setLine(0, 0, 0, 170);
-     left_vertical->setZValue(1);
+     left_vertical->setZValue(-2);
      right_vertical = new QGraphicsLineItem;
      right_vertical->setPen(pen);
      right_vertical->setLine(60, 0, 60, 170);
-     right_vertical->setZValue(1);
+     right_vertical->setZValue(-2);
      horizontal_up = new QGraphicsLineItem;
      horizontal_up->setPen(pen);
      horizontal_up->setLine(0, 0, 60, 0);
-     horizontal_up->setZValue(1);
+     horizontal_up->setZValue(-2);
      horizontal_down = new QGraphicsLineItem;
      horizontal_down->setPen(pen);
      horizontal_down->setLine(0, 170, 60, 170);
-     horizontal_down->setZValue(1);
+     horizontal_down->setZValue(-2);
+
+     background = new QGraphicsPixmapItem;
+     background->setPos(0, 0);
+     background->setZValue(-2);
+     background_pixmap.load(":/textures/images/background.png");
+     background->setPixmap(background_pixmap);
 
      elevator_shape = new QGraphicsItemGroup;
      elevator_shape->addToGroup(left_vertical);
      elevator_shape->addToGroup(right_vertical);
      elevator_shape->addToGroup(horizontal_down);
      elevator_shape->addToGroup(horizontal_up);
-     elevator_shape->setZValue(1);
+     elevator_shape->addToGroup(background);
+     elevator_shape->setZValue(-2);
 
      current_floor = 1;
 

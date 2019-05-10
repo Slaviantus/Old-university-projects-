@@ -83,11 +83,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
     rightdoor->setZValue(-1);
     right_door_pixmap.load(":/textures/images/right_door.png");
     rightdoor->setPixmap(right_door_pixmap);
-    background = new QGraphicsPixmapItem;
-    background->setPos(point_background);
-    background->setZValue(-2);
-    background_pixmap.load(":/textures/images/background.png");
-    background->setPixmap(background_pixmap);
     button_plate = new Button_plate;
     button_plate->setPos(point_button_plate);
     button_plate->setZValue(1);
@@ -108,6 +103,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     text_floor->setPos(150, 60);
 
 
+
     floorgroup = new QGraphicsItemGroup;
     floorgroup->addToGroup(plate);
     floorgroup->addToGroup(leftwall);
@@ -115,10 +111,10 @@ Floor::Floor(int number, QGraphicsScene* scene)
     floorgroup->addToGroup(beam);
     floorgroup->addToGroup(leftdoor);
     floorgroup->addToGroup(rightdoor);
-    floorgroup->addToGroup(background);
     floorgroup->addToGroup(text_floor);
     floorgroup->addToGroup(button_plate);
     floorgroup->setPos(0,-scene->height());
+    floorgroup->setOpacity(0.5);
 
     elevator_stop_point.setX(342);
     elevator_stop_point.setY(-scene->height() + 30);
@@ -126,26 +122,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
     button_plate_clicked = false;
 
     connect(button_plate, SIGNAL(button_clicked()), this, SLOT(emmiting_button_clicked()));
-    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
-
-
-//    auto timer = new QTimer(this);
-//    connect(timer, &QTimer::timeout, [this]()
-//    {
-//        Opendoors();
-//    });
-//    timer->setSingleShot(true);
-//    timer->start(1000);
-
-//    Opendoors();
-//    auto timer = new QTimer(this);
-//        connect(timer, &QTimer::timeout, [this]()
-//        {
-//            Closedoors();
-//        });
-//        timer->setSingleShot(true);
-//        timer->start(5000);
-
 }
 
 void Floor::drawfloor()
@@ -178,7 +154,7 @@ Floor::~Floor()
     delete beam;
     delete leftdoor;
     delete rightdoor;
-    delete background;
+  //  delete background;
     delete floorgroup;
 }
 

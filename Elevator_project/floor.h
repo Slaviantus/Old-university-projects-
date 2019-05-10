@@ -38,7 +38,6 @@ private:
     QGraphicsPixmapItem* beam;
     QGraphicsPixmapItem* leftdoor;
     QGraphicsPixmapItem* rightdoor;
-    QGraphicsPixmapItem* background;
     QGraphicsTextItem* text_floor;
     Button_plate* button_plate;
     QGraphicsItemGroup* floorgroup;
@@ -58,7 +57,6 @@ private:
     QPixmap right_wall_pixmap;
     QPixmap plate_pixmap;
     QPixmap beam_pixmap;
-    QPixmap background_pixmap;
     QPixmap button_plate_pixmap;
     QColor color_of_text_floor;
     QTimeLine doorsTimeLine;

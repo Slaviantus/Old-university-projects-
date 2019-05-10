@@ -11,6 +11,7 @@
 #include "QPen"
 #include "QPoint"
 #include "QTimer"
+#include "QPixmap"
 
 
 enum Elevator_state
@@ -57,7 +58,9 @@ private:
     QGraphicsLineItem* right_vertical;
     QGraphicsLineItem* horizontal_up;
     QGraphicsLineItem* horizontal_down;
+    QGraphicsPixmapItem* background;
     QGraphicsItemGroup* elevator_shape;
+    QPixmap background_pixmap;
     QPoint new_position;
     QPoint stop_position;
     int new_y;
