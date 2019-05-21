@@ -33,6 +33,8 @@ void Elevator::add_floor()
 void Elevator::calling_the_floor()
 {
     number = sender()->objectName().toInt();
+    if(number != current_floor)
+    {
     if(floors_table[number - 1] == false)
     {
 
@@ -46,12 +48,13 @@ void Elevator::calling_the_floor()
 
     }
 
-    if((state == STOPPING) && (check_floors()))
+    if((state == STOPPING) && (check_floors()) && !still_stopping)
 
     {
         emit carry_on();
     }
 
+    }
     }
 
 }
@@ -145,6 +148,7 @@ void Elevator::Change_direction()
 {
             state = MOVING;
             departure_floor = current_floor;
+            still_stopping = false;
             if(current_floor == floors.length()) // Если на последнем этаже
             {
                 floor_difference_up = 0;
@@ -285,7 +289,9 @@ void Elevator::floor_button_clicked()
         {
             if((j + 1 == current_floor) && state == STOPPING)
             {
+                still_stopping = true;
                 (*it)->Opendoors();
+                state == MOVING;
                 timer_stopping.start();
                 (*it)->cancel_button_clicked();
                 is_elevator_on_current_floor = true;

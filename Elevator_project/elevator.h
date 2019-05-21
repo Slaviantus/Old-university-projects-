@@ -66,6 +66,8 @@ private:
     int new_y;
     int iup;
     int i;
+    bool still_stopping;
+
 
 
 
