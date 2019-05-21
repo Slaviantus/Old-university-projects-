@@ -52,8 +52,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
 
 
     plate = new QGraphicsPixmapItem;
-    cout << "Memory plate installed" << endl;
-    cout << plate << endl;
     plate->setPos(point_plate);
     plate->setZValue(0);
     plate_pixmap.load(":/textures/images/plate.png");

@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&ui->graphicsView->elevator, SIGNAL(pointer_down()), this, SLOT(show_pointer_down()));
     connect(&ui->graphicsView->elevator, SIGNAL(no_pointer()), this, SLOT(show_no_pointer()));
 
-
     floor_button_name = 0;
 
     pointer_up_pixmap.load(":/textures/images/pointer_up.png");
@@ -77,7 +76,6 @@ void MainWindow::on_add_floor_clicked()
     connect(pushButton, SIGNAL(clicked()), &ui->graphicsView->elevator, SLOT(calling_the_floor()));
     //ui->->addWidget(pushButton);
     ui->floors_layout->addWidget(pushButton);
-    cout << "CLICKED" << endl;
 }
 
 

@@ -8,15 +8,11 @@ GScene::GScene(QWidget *parent):QWidget(parent)//конструктор видж
 {
     GLayoutScene = new QHBoxLayout(this);
     PGView = new Gview;
-    cout << "GView created" << endl;
-    cout << PGView << endl;
     GLayoutScene->addWidget(PGView);
     setLayout(GLayoutScene);
 }
 
 GScene::~GScene()
 {
-    cout << "GView destroyed" << endl;
-    cout << PGView << endl;
     delete PGView;
 }

@@ -94,8 +94,23 @@
      </item>
      <item>
       <widget class="QPushButton" name="hide_show">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
         <string>PushButton</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
