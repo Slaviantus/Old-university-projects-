@@ -82,6 +82,7 @@ signals:
 
   public:
     Elevator();
+    ~Elevator();
     void setscene(QGraphicsScene *pointer_scene);
     int get_current_floor();
     void add_floor();

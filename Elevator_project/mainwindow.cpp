@@ -23,10 +23,10 @@ MainWindow::MainWindow(QWidget *parent) :
     pal.setColor(QPalette::Background, Qt::black);
     ui->lcdnumber->setAutoFillBackground(true);
     ui->lcdnumber->setPalette(pal);
-    connect(&ui->graphicsView->elevator, SIGNAL(floor_Changed()), this, SLOT(indicator()));
-    connect(&ui->graphicsView->elevator, SIGNAL(pointer_up()), this, SLOT(show_pointer_up()));
-    connect(&ui->graphicsView->elevator, SIGNAL(pointer_down()), this, SLOT(show_pointer_down()));
-    connect(&ui->graphicsView->elevator, SIGNAL(no_pointer()), this, SLOT(show_no_pointer()));
+    connect(ui->graphicsView->elevator, SIGNAL(floor_Changed()), this, SLOT(indicator()));
+    connect(ui->graphicsView->elevator, SIGNAL(pointer_up()), this, SLOT(show_pointer_up()));
+    connect(ui->graphicsView->elevator, SIGNAL(pointer_down()), this, SLOT(show_pointer_down()));
+    connect(ui->graphicsView->elevator, SIGNAL(no_pointer()), this, SLOT(show_no_pointer()));
 
     floor_button_name = 0;
 
@@ -47,7 +47,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::indicator()
 {
-    ui->lcdnumber->display(ui->graphicsView->elevator.get_current_floor());
+    ui->lcdnumber->display(ui->graphicsView->elevator->get_current_floor());
 }
 
 void MainWindow::show_pointer_up()
@@ -73,7 +73,7 @@ void MainWindow::on_add_floor_clicked()
     QPushButton* pushButton = new QPushButton(ui->scrollAreaWidgetContents);
     pushButton->setText(QVariant(floor_button_name).toString());
     pushButton->setObjectName(QVariant(floor_button_name).toString());
-    connect(pushButton, SIGNAL(clicked()), &ui->graphicsView->elevator, SLOT(calling_the_floor()));
+    connect(pushButton, SIGNAL(clicked()), ui->graphicsView->elevator, SLOT(calling_the_floor()));
     //ui->->addWidget(pushButton);
     ui->floors_layout->addWidget(pushButton);
 }
@@ -81,5 +81,5 @@ void MainWindow::on_add_floor_clicked()
 
 void MainWindow::on_hide_show_clicked()
 {
-    ui->graphicsView->elevator.show_elevator();
+    ui->graphicsView->elevator->show_elevator();
 }

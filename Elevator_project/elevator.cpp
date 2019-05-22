@@ -26,7 +26,6 @@ void Elevator::add_floor()
     }
     connect(floor, SIGNAL(doors_are_closed()), this, SLOT(control_carry_on()));
     connect(floor, SIGNAL(button_clicked()), this, SLOT(floor_button_clicked()));
-    //    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
 
 }
 
@@ -332,26 +331,23 @@ is_elevator_on_current_floor = false;
 
 Elevator::Elevator()
 {
+    cout <<"========================================" << endl;
     emit floor_Changed();
     timer_up = new QTimer(this);
+    cout << "timer up is created " << timer_up << endl;
     connect(timer_up, SIGNAL(timeout()), this, SLOT(go_up()));
     timer_up->setInterval(40);
     i = 0;
     timer_down = new QTimer(this);
+    cout << "timer down is created " << timer_down << endl;
     connect(timer_down, SIGNAL(timeout()), this, SLOT(go_down()));
     timer_down->setInterval(10);
     new_position.setX(342);
     it = floors.begin();
     timer_stopping.setDuration(5000);
-//    connect(&timer_up, &QTimeLine::frameChanged, this, &Elevator::go_up);
-    //    connect(&timer_up, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(this, &Elevator::stop, this, &Elevator::Check_moving);
-//    connect(&timer_down, &QTimeLine::frameChanged, this, &Elevator::go_down);
-//    connect(&timer_down, &QTimeLine::finished, this, &Elevator::Check_moving);
     connect(&timer_stopping, &QTimeLine::finished, this, &Elevator::Closing_doors);
     connect(this, &Elevator::carry_on, this, &Elevator::Change_direction);
-   // connect(this, &Elevator::doors_are_closed, this, &Elevator::control_carry_on);
-
 
      pen.setColor(Qt::black);
      pen.setWidth(3);
@@ -359,29 +355,35 @@ Elevator::Elevator()
 
 
      left_vertical = new QGraphicsLineItem;
+     cout << "left_vertical is created " << left_vertical << endl;
      left_vertical->setPen(pen);
      left_vertical->setLine(0, 0, 0, 170);
      left_vertical->setZValue(-2);
      right_vertical = new QGraphicsLineItem;
+       cout << "right_vertical is created " << right_vertical << endl;
      right_vertical->setPen(pen);
      right_vertical->setLine(60, 0, 60, 170);
      right_vertical->setZValue(-2);
      horizontal_up = new QGraphicsLineItem;
+    cout << "horivontal_up is created " << horizontal_up << endl;
      horizontal_up->setPen(pen);
      horizontal_up->setLine(0, 0, 60, 0);
      horizontal_up->setZValue(-2);
      horizontal_down = new QGraphicsLineItem;
+     cout << "horivontal_down is created " << horizontal_down << endl;
      horizontal_down->setPen(pen);
      horizontal_down->setLine(0, 170, 60, 170);
      horizontal_down->setZValue(-2);
 
      background = new QGraphicsPixmapItem;
+     cout << "background is created " << background << endl;
      background->setPos(0, 0);
      background->setZValue(-2);
      background_pixmap.load(":/textures/images/background.png");
      background->setPixmap(background_pixmap);
 
      elevator_shape = new QGraphicsItemGroup;
+     cout << "elevator_shape is created " << elevator_shape << endl;
      elevator_shape->addToGroup(left_vertical);
      elevator_shape->addToGroup(right_vertical);
      elevator_shape->addToGroup(horizontal_down);
@@ -393,7 +395,28 @@ Elevator::Elevator()
 
      state = STOPPING;
 
- }
+}
+
+Elevator::~Elevator()
+{
+cout << "===================================" << endl;
+cout << "timer up is deleted " << timer_up << endl;
+cout << "timer down is deleted " << timer_down << endl;
+cout << "left_vertical is deleted " << left_vertical << endl;
+cout << "right_vertical is deleted " << right_vertical << endl;
+cout << "horivontal_up is deleted " << horizontal_up << endl;
+cout << "horivontal_down is deleted " << horizontal_down << endl;
+cout << "background is deleted " << background << endl;
+cout << "elevator_shape is deleted " << elevator_shape << endl;
+delete timer_up;
+delete timer_down;
+delete left_vertical;
+delete right_vertical;
+delete horizontal_up;
+delete horizontal_down;
+delete background;
+delete elevator_shape;
+}
 
 void Elevator::setscene(QGraphicsScene *pointer_scene)
 {

@@ -17,7 +17,7 @@ class Gview : public QGraphicsView //класс окна графическог�
 public:
     Gview(QWidget *parent = 0);
     ~Gview();
-    Elevator elevator;
+    Elevator *elevator;
 private:
     QGraphicsScene *scene;
     int floor_number_push_button;
