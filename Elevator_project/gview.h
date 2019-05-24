@@ -11,6 +11,7 @@
 #include "elevator.h"
 #include "QString"
 
+
 class Gview : public QGraphicsView //класс окна графического представления QGraphicsView
 {
  Q_OBJECT

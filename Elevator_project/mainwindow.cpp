@@ -3,7 +3,6 @@
 #include <QPainter>
 #include "iostream"
 #include "QGraphicsScene"
-#include "gscene.h"
 #include "QString"
 #include "QVariant"
 #include "elevator.h"
@@ -37,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     on_add_floor_clicked();
     on_add_floor_clicked();
+
+    ui->hide_show->setText("Show");
 }
 
 
@@ -74,12 +75,20 @@ void MainWindow::on_add_floor_clicked()
     pushButton->setText(QVariant(floor_button_name).toString());
     pushButton->setObjectName(QVariant(floor_button_name).toString());
     connect(pushButton, SIGNAL(clicked()), ui->graphicsView->elevator, SLOT(calling_the_floor()));
-    //ui->->addWidget(pushButton);
     ui->floors_layout->addWidget(pushButton);
 }
 
 
 void MainWindow::on_hide_show_clicked()
 {
+    if(ui->graphicsView->elevator->is_elevator_shown())
+    {
+        ui->graphicsView->elevator->hide_elevator();
+        ui->hide_show->setText("Show");
+    }
+    else
+    {
     ui->graphicsView->elevator->show_elevator();
+    ui->hide_show->setText("Hide");
+    }
 }

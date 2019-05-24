@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QAction>
 #include "QGraphicsScene"
-#include "gscene.h"
 #include "elevator.h"
 #include "QPixmap"
 

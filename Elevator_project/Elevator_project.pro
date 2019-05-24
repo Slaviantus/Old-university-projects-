@@ -27,10 +27,6 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    time_again.cpp \
-    workplace.cpp \
-    floors.cpp \
-    gscene.cpp \
     gview.cpp \
     floor.cpp \
     elevator.cpp \
@@ -38,10 +34,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    time_again.h \
-    workplace.h \
-    floors.h \
-    gscene.h \
     gview.h \
     floor.h \
     elevator.h \

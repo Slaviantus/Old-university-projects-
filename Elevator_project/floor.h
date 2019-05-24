@@ -30,6 +30,7 @@ public:
     int Get_number();
     void cancel_button_clicked();
     void transparency();
+    void transparency_off();
     ~Floor();
 private:
     QPen floorpen;

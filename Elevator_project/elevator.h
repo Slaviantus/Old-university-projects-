@@ -67,6 +67,7 @@ private:
     int iup;
     int i;
     bool still_stopping;
+    bool transparency;
 
 
 
@@ -86,6 +87,7 @@ signals:
     void setscene(QGraphicsScene *pointer_scene);
     int get_current_floor();
     void add_floor();
+    bool is_elevator_shown();
 private slots:
     void go_up();
     void go_down();
@@ -97,6 +99,7 @@ private slots:
 public slots:
     void calling_the_floor();
     void show_elevator();
+    void hide_elevator();
    };
 
 #endif // ELEVATOR_H

@@ -7,8 +7,8 @@
 #include "QPixmap"
 #include "QTimeLine"
 #include "iostream"
-#include "gscene.h"
 #include "QGraphicsTextItem"
+#include "QGraphicsScene"
 #include "QFont"
 
 using namespace std;
@@ -150,19 +150,16 @@ Floor::~Floor()
     delete beam;
     delete leftdoor;
     delete rightdoor;
-  //  delete background;
     delete floorgroup;
 }
 
 void Floor::Opendoors()
 {
-    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_open);
     doorsTimeLine.start();
 }
 
 void Floor::Closedoors()
 {
-    //connect(&doorsTimeLine, &QTimeLine::frameChanged, this, &Floor::setDoorsPos_close);
     closing_doors_time_line.start();
 }
 
@@ -194,6 +191,11 @@ void Floor::cancel_button_clicked()
 void Floor::transparency()
 {
     floorgroup->setOpacity(0.5);
+}
+
+void Floor::transparency_off()
+{
+    floorgroup->setOpacity(1);
 }
 
 void Floor::setDoorsPos_close(int x)
