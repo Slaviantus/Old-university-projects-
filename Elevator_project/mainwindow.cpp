@@ -72,6 +72,7 @@ void MainWindow::on_add_floor_clicked()
 {
     floor_button_name++;
     QPushButton* pushButton = new QPushButton(ui->scrollAreaWidgetContents);
+    button_points.push_back(pushButton);
     pushButton->setText(QVariant(floor_button_name).toString());
     pushButton->setObjectName(QVariant(floor_button_name).toString());
     connect(pushButton, SIGNAL(clicked()), ui->graphicsView->elevator, SLOT(calling_the_floor()));
@@ -96,4 +97,12 @@ void MainWindow::on_hide_show_clicked()
 void MainWindow::on_delete_floor_clicked()
 {
     ui->graphicsView->delete_floor();
+    if(ui->graphicsView->elevator->is_elevator_away())
+    {
+    ui->floors_layout->removeWidget(button_points[button_points.size() - 1]);
+    delete button_points[button_points.size() - 1];
+    floor_button_name--;
+    button_points.pop_back();
+    }
+
 }

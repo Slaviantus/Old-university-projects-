@@ -68,6 +68,7 @@ private:
     int i;
     bool still_stopping;
     bool transparency;
+    bool elevator_away;
 
 
 
@@ -89,6 +90,7 @@ signals:
     void add_floor();
     void delete_floor();
     bool is_elevator_shown();
+    bool is_elevator_away();
 private slots:
     void go_up();
     void go_down();

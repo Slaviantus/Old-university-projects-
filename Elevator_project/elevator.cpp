@@ -42,17 +42,24 @@ void Elevator::delete_floor()
 {
     if((floors.size() > 2) && state == STOPPING && current_floor < floors.size())
     {
+        elevator_away = true;
     scene->removeItem(floors[floors.size() - 1]->Getgroup());
    // scene->destroyItemGroup(floors[floors.size() - 1]->Getgroup());
     floors.pop_back();
     floors_table.pop_back();
     stop_points.pop_back();
     }
+    elevator_away = false;
 }
 
 bool Elevator::is_elevator_shown()
 {
     return transparency;
+}
+
+bool Elevator::is_elevator_away()
+{
+    return elevator_away;
 }
 
 void Elevator::calling_the_floor()
@@ -426,6 +433,8 @@ Elevator::Elevator()
      current_floor = 1;
 
      state = STOPPING;
+
+     elevator_away = false;
 
 }
 

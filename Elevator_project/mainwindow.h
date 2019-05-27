@@ -7,6 +7,7 @@
 #include "QGraphicsScene"
 #include "elevator.h"
 #include "QPixmap"
+#include "QPushButton"
 
 
 namespace Ui {
@@ -42,6 +43,7 @@ private:
     QPixmap pointer_up_pixmap;
     QPixmap pointer_down_pixmap;
     QPixmap no_pointer_pixmap;
+    QVector <QPushButton*> button_points;
 
 
 
