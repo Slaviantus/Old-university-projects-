@@ -12,5 +12,6 @@
         <file>images/pointer_down.png</file>
         <file>images/pointer_up.png</file>
         <file>images/pointer_null.png</file>
+        <file>images/pushed_button_plate.png</file>
     </qresource>
 </RCC>

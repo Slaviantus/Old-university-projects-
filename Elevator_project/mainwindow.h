@@ -29,6 +29,8 @@ void show_no_pointer();
 
 void on_hide_show_clicked();
 
+void on_delete_floor_clicked();
+
 public slots:
 void on_add_floor_clicked();
 

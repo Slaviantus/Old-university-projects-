@@ -27,3 +27,8 @@ void Gview::add_floor()
     elevator->add_floor();
 }
 
+void Gview::delete_floor()
+{
+    elevator->delete_floor();
+}
+

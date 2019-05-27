@@ -86,6 +86,7 @@ Floor::Floor(int number, QGraphicsScene* scene)
     button_plate->setZValue(1);
     button_plate_pixmap.load(":/textures/images/buttonplate.PNG");
     button_plate->setPixmap(button_plate_pixmap);
+    pushed_button_plate_pixmap.load(":/textures/images/pushed_button_plate.png");
 
 
     text_floor = new QGraphicsTextItem;
@@ -120,11 +121,6 @@ Floor::Floor(int number, QGraphicsScene* scene)
     connect(button_plate, SIGNAL(button_clicked()), this, SLOT(emmiting_button_clicked()));
 }
 
-void Floor::drawfloor()
-{
-
-
-}
 
 void Floor::setDoorsPos_open(int x)
 {
@@ -155,6 +151,7 @@ Floor::~Floor()
 
 void Floor::Opendoors()
 {
+    button_no_active();
     doorsTimeLine.start();
 }
 
@@ -196,6 +193,21 @@ void Floor::transparency()
 void Floor::transparency_off()
 {
     floorgroup->setOpacity(1);
+}
+
+void Floor::push_button_plate()
+{
+    button_plate->setPixmap(pushed_button_plate_pixmap);
+}
+
+void Floor::button_no_active()
+{
+    button_plate->setPixmap(button_plate_pixmap);
+}
+
+void Floor::set_y(int y)
+{
+    floorgroup->setY(y);
 }
 
 void Floor::setDoorsPos_close(int x)

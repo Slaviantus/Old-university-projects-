@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Elevator project</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="Gview" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>0</y>
+      <x>10</x>
+      <y>10</y>
       <width>791</width>
       <height>711</height>
      </rect>
@@ -75,7 +75,7 @@
           <x>0</x>
           <y>0</y>
           <width>154</width>
-          <height>523</height>
+          <height>494</height>
          </rect>
         </property>
         <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -118,6 +118,13 @@
       <widget class="QPushButton" name="add_floor">
        <property name="text">
         <string>add floor</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="delete_floor">
+       <property name="text">
+        <string>delete floor</string>
        </property>
       </widget>
      </item>
@@ -226,8 +233,8 @@
    <slot>add_floor()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>871</x>
-     <y>183</y>
+     <x>872</x>
+     <y>723</y>
     </hint>
     <hint type="destinationlabel">
      <x>780</x>

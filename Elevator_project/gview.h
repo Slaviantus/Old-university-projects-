@@ -25,6 +25,7 @@ private:
 private slots:
     void add_floor();
 public slots:
+    void delete_floor();
 };
 
 #endif // GVIEW_H

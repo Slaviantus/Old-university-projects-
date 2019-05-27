@@ -19,7 +19,6 @@ class Floor : public QObject
     Q_OBJECT
 public:
     Floor(int number, QGraphicsScene *scene);
-    void drawfloor();
     QGraphicsItemGroup* Getgroup();
     void setnumber(int num);
     void Opendoors();
@@ -31,6 +30,9 @@ public:
     void cancel_button_clicked();
     void transparency();
     void transparency_off();
+    void push_button_plate();
+    void button_no_active();
+    void set_y(int y);
     ~Floor();
 private:
     QPen floorpen;
@@ -60,6 +62,7 @@ private:
     QPixmap plate_pixmap;
     QPixmap beam_pixmap;
     QPixmap button_plate_pixmap;
+    QPixmap pushed_button_plate_pixmap;
     QColor color_of_text_floor;
     QTimeLine doorsTimeLine;
     QTimeLine closing_doors_time_line;

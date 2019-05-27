@@ -92,3 +92,8 @@ void MainWindow::on_hide_show_clicked()
     ui->hide_show->setText("Hide");
     }
 }
+
+void MainWindow::on_delete_floor_clicked()
+{
+    ui->graphicsView->delete_floor();
+}

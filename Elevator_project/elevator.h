@@ -87,6 +87,7 @@ signals:
     void setscene(QGraphicsScene *pointer_scene);
     int get_current_floor();
     void add_floor();
+    void delete_floor();
     bool is_elevator_shown();
 private slots:
     void go_up();

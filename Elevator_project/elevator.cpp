@@ -16,6 +16,10 @@ void Elevator::add_floor()
     scene->addItem(floor->Getgroup());
     floors_table.resize(floors.length());
     floors_table[floors_table.length() - 1] = false;
+    if(floors.size() > 2)
+    {
+    floor->set_y(stop_points[stop_points.size() - 1] - 250);
+    }
     if(floors.size() == 1)
     {
         stop_points.push_back(30);
@@ -32,6 +36,18 @@ void Elevator::add_floor()
         floor->transparency();
     }
 
+}
+
+void Elevator::delete_floor()
+{
+    if((floors.size() > 2) && state == STOPPING && current_floor < floors.size())
+    {
+    scene->removeItem(floors[floors.size() - 1]->Getgroup());
+   // scene->destroyItemGroup(floors[floors.size() - 1]->Getgroup());
+    floors.pop_back();
+    floors_table.pop_back();
+    stop_points.pop_back();
+    }
 }
 
 bool Elevator::is_elevator_shown()
@@ -308,6 +324,7 @@ void Elevator::floor_button_clicked()
     {
         if((*it)->is_button_clicked())
         {
+            (*it)->push_button_plate();
             if((j + 1 == current_floor) && state == STOPPING)
             {
                 still_stopping = true;
