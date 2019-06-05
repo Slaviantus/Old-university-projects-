@@ -69,6 +69,7 @@ private:
     bool still_stopping;
     bool transparency;
     bool elevator_away;
+    bool uskoreniye;
 
 
 

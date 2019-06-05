@@ -44,7 +44,6 @@ void Elevator::delete_floor()
     {
         elevator_away = true;
     scene->removeItem(floors[floors.size() - 1]->Getgroup());
-   // scene->destroyItemGroup(floors[floors.size() - 1]->Getgroup());
     floors.pop_back();
     floors_table.pop_back();
     stop_points.pop_back();
@@ -122,6 +121,8 @@ void Elevator::go_up()
         new_y--;
         new_position.setY(new_y);
         elevator_shape->setPos(new_position);
+        if(uskoreniye)
+        {
         if(new_y == stop_points[current_floor - 1] - 5)
         {
             timer_up->setInterval(20);
@@ -133,6 +134,23 @@ void Elevator::go_up()
         if(new_y == stop_points[current_floor - 1] - 20)
         {
             timer_up->setInterval(10);
+            uskoreniye = false;
+        }
+        }
+        if(floor_difference_up == 1)
+        {
+        if(new_y == stop_points[current_floor - 1] - 200)
+        {
+            timer_up->setInterval(15);
+        }
+        if(new_y == stop_points[current_floor - 1] - 210)
+        {
+            timer_up->setInterval(20);
+        }
+        if(new_y == stop_points[current_floor - 1] - 215)
+        {
+            timer_up->setInterval(40);
+        }
         }
         if(new_y == stop_points[current_floor])
         {
@@ -157,6 +175,37 @@ void Elevator::go_down()
         new_y++;
         new_position.setY(new_y);
         elevator_shape->setPos(new_position);
+        if(uskoreniye)
+        {
+            if(new_y == stop_points[current_floor - 1] + 5)
+            {
+                timer_down->setInterval(20);
+            }
+            if(new_y == stop_points[current_floor - 1] + 10)
+            {
+                timer_down->setInterval(15);
+            }
+            if(new_y == stop_points[current_floor - 1] + 20)
+            {
+                timer_down->setInterval(10);
+                uskoreniye = false;
+            }
+        }
+        if(floor_difference_down == 1)
+        {
+            if(new_y == stop_points[current_floor - 2] - 20)
+            {
+                timer_down->setInterval(15);
+            }
+            if(new_y == stop_points[current_floor - 2] - 10)
+            {
+                timer_down->setInterval(20);
+            }
+            if(new_y == stop_points[current_floor - 2] - 5)
+            {
+                timer_down->setInterval(40);
+            }
+        }
         if(new_y == stop_points[current_floor - 2])
         {
             it--;
@@ -177,10 +226,14 @@ void Elevator::Go()
 {
     if(direction == UP)
     {
+        timer_up->setInterval(40);
+        uskoreniye = true;
         timer_up->start();
     }
     if(direction == DOWN)
     {
+        timer_down->setInterval(40);
+        uskoreniye = true;
         timer_down->start();
     }
 
@@ -396,6 +449,8 @@ Elevator::Elevator()
      pen.setWidth(3);
 
      transparency = false;
+
+     uskoreniye = true;
 
 
 
