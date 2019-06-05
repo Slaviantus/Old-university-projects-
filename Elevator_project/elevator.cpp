@@ -40,6 +40,7 @@ void Elevator::add_floor()
 
 void Elevator::delete_floor()
 {
+    elevator_away = false;
     if((floors.size() > 2) && state == STOPPING && current_floor < floors.size())
     {
         elevator_away = true;
@@ -48,7 +49,6 @@ void Elevator::delete_floor()
     floors_table.pop_back();
     stop_points.pop_back();
     }
-    elevator_away = false;
 }
 
 bool Elevator::is_elevator_shown()
