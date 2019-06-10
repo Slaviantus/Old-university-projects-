@@ -70,6 +70,7 @@ private:
     bool transparency;
     bool elevator_away;
     bool uskoreniye;
+    bool is_elevator_on_current_floor;
 
 
 

@@ -378,7 +378,6 @@ void Elevator::control_carry_on()
 
 void Elevator::floor_button_clicked()
 {
-    bool is_elevator_on_current_floor;
     it = floors.begin();
     for(int j = 0; j < floors.size(); j++)
     {
@@ -389,7 +388,7 @@ void Elevator::floor_button_clicked()
             {
                 still_stopping = true;
                 (*it)->Opendoors();
-                state == MOVING;
+                state = MOVING;
                 timer_stopping.start();
                 (*it)->cancel_button_clicked();
                 is_elevator_on_current_floor = true;
@@ -425,7 +424,10 @@ if(!is_elevator_on_current_floor)
         it++;
     }
 }
+if(state == MOVING)
+{
 is_elevator_on_current_floor = false;
+}
 }
 
 Elevator::Elevator()
