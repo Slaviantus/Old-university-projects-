@@ -26,10 +26,34 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    aequation.cpp \
+    binaryitem.cpp \
+    commonitem.cpp \
+    dequation.cpp \
+    equation.cpp \
+    modelscene.cpp \
+    place.cpp \
+    placeeditor.cpp \
+    poweritem.cpp \
+    summa.cpp \
+    vectoritem.cpp \
+    matrixitem.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    aequation.h \
+    binaryitem.h \
+    commonitem.h \
+    dequation.h \
+    equation.h \
+    modelscene.h \
+    place.h \
+    placeeditor.h \
+    poweritem.h \
+    summa.h \
+    vectoritem.h \
+    matrixitem.h
 
 CONFIG += mobility
 MOBILITY = 
