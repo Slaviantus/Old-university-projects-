@@ -36,6 +36,8 @@ ModelScene::ModelScene(QObject *parent) :
 
     addDEquation();
 
+    MatrixItem *matrix = new MatrixItem(commonFont);
+
     deq = static_cast<DEquation *>(equations.last());
     deq->getLeft()->setText("y_4");
     PowerItem *pwr1 = new PowerItem(commonFont);
@@ -222,7 +224,7 @@ CommonItem *ModelScene::getNewItem(const ItemTypes itemType, const QFont font)
     case ITMatrix2:
         break;
     case ITMatrix3:
-        break;
+        return new MatrixItem(font);
     case ITRoundPars:
         break;
     case ITUnaryFunction:

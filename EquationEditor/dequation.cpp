@@ -118,7 +118,7 @@ void DEquation::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     penTemp.setStyle(Qt::DotLine);
     painter->setPen(penTemp);
     painter->drawRect(boundingRect());
-//    painter->drawRect(QRectF(QPointF(), boundingRect().size()));
+    //painter->drawRect(QRectF(QPointF(), boundingRect().size()));
 }
 
 /**

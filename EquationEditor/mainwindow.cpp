@@ -21,9 +21,9 @@ void MainWindow::insertionCommand()
     else if (actPower == senderAction)
         itemType = ModelScene::ITBinPwr;
     else if (actMatrix2 == senderAction)
-        itemType = ModelScene::ITMatrix2;
+        itemType = ModelScene::ITMatrix2;//
     else if (actMatrix3 == senderAction)
-        itemType = ModelScene::ITMatrix3;
+        itemType = ModelScene::ITMatrix3;//
     else if (actProduct == senderAction)
         itemType = ModelScene::ITProduct;
     else if (actRoundPars == senderAction)
@@ -105,6 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actVector2, SIGNAL(triggered()), this, SLOT(insertionCommand()));
     connect(actVector3, SIGNAL(triggered()), this, SLOT(insertionCommand()));
     connect(this, SIGNAL(insertionCommandSelected(ModelScene::ItemTypes)), model, SLOT(insertItemWrapper(ModelScene::ItemTypes)));
+    connect(actMatrix3, SIGNAL(triggered()), this, SLOT(insertionCommand()));
     // ***********************************************************************
 
     // панель меню
