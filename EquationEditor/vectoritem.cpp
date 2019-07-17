@@ -2,6 +2,9 @@
 #include <QFontMetrics>
 #include <QPainter>
 #include <QPen>
+#include <iostream>
+
+using namespace std;
 
 /**
  * @brief VectorItem::VectorItem
@@ -84,6 +87,7 @@ void VectorItem::setChildPos()
  */
 void VectorItem::updateSize()
 {
+    cout << "Glory to Arstotzka!!" << endl;
     CommonItem::updateSize();
 
     m_topLeft += QPointF(-10.0, -2.0);

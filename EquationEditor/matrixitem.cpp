@@ -1,5 +1,8 @@
 #include "matrixitem.h"
 #include "place.h"
+#include "iostream"
+
+using namespace std;
 
 
 
@@ -12,7 +15,6 @@ MatrixItem::MatrixItem(const QFont &font, QObject *parent) : CommonItem(font, MA
         //items[i]->enableEditable(i == 1 ? false : true);
          items[i]->enableEditable(true);
     }
-
     setChildPos();
 }
 
@@ -27,15 +29,47 @@ void MatrixItem::setChildPos()
         }
     }
     //****************experiment**************
-    items[1]->setText("x");
-    items[1]->setPos(40, 0);
-    items[0]->setText("e");
-    items[0]->setPos(5, this->boundingRect().height()/(-2) + 5);
-    items[2]->setText("p");
-    items[3]->setText("e");
-    items[4]->setText("r");
-    items[5]->setText("i");
-    items[6]->setText("m");
-    items[7]->setText("e");
-    items[8]->setText("n");
- }
+    items[0]->setPos(0.0, 0.0);
+    //items[0]->setText("r");
+    items[1]->setPos(items[0]->boundingRect().width(), 0.0);
+    items[2]->setPos(items[1]->pos().x() + items[1]->boundingRect().width(), 0.0);
+    items[3]->setPos(0.0, items[0]->boundingRect().height());
+    items[4]->setPos(items[3]->boundingRect().width(), items[0]->boundingRect().height());
+    items[5]->setPos(items[4]->pos().x() + items[4]->boundingRect().width(), items[0]->boundingRect().height());
+    items[6]->setPos(0.0, items[3]->pos().y() + items[3]->boundingRect().height());
+    items[7]->setPos(items[6]->boundingRect().width(), items[3]->pos().y() + items[3]->boundingRect().height());
+    items[8]->setPos(items[7]->pos().x() + items[7]->boundingRect().width(), items[3]->pos().y() + items[3]->boundingRect().height());
+}
+
+void MatrixItem::updateSize()
+{
+    CommonItem::updateSize();
+    max_windth = items[0]->boundingRect().width();
+    for(int i = 0; i < m_iNum; i = 3 + i)
+    {
+      if(items[i]->boundingRect().width() >= max_windth)
+      {
+          max_windth = items[i]->boundingRect().width();
+          max_windth_index = i;
+      }
+    }
+    for(int i = 1; i < m_iNum; i = 3 + i)
+    {
+        items[i]->setX(items[max_windth_index]->boundingRect().width());
+    }
+    max_windth = items[1]->boundingRect().width();
+    for(int i = 1; i < m_iNum; i = 3 + i)
+    {
+        if(items[i]->boundingRect().width() >= max_windth)
+        {
+            max_windth = items[i]->boundingRect().width();
+            max_windth_index = i;
+        }
+    }
+    for(int i = 2; i < m_iNum; i = 3 + i)
+    {
+        items[i]->setX(items[1]->pos().x() + items[max_windth_index]->boundingRect().width());
+    }
+
+}
+

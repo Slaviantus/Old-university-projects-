@@ -36,8 +36,6 @@ ModelScene::ModelScene(QObject *parent) :
 
     addDEquation();
 
-    MatrixItem *matrix = new MatrixItem(commonFont);
-
     deq = static_cast<DEquation *>(equations.last());
     deq->getLeft()->setText("y_4");
     PowerItem *pwr1 = new PowerItem(commonFont);
@@ -45,7 +43,18 @@ ModelScene::ModelScene(QObject *parent) :
     pwr1->getNextEditablePlace(pwr1->getFirstEditablePlace())->setText("5");
     deq->getRight()->insertItem(pwr1);
 
+   // updateEquations();
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    addDEquation();
+    deq = static_cast<DEquation *>(equations.last());
+    deq->getLeft()->setText("l");
+    MatrixItem *matrix = new MatrixItem(commonFont);
+    deq->getRight()->insertItem(matrix);
+
     updateEquations();
+
 }
 
 void ModelScene::addDEquation(DEquation *equation)

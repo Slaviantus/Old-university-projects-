@@ -4,6 +4,9 @@
 #include "modelscene.h"
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
+#include <iostream>
+
+using namespace std;
 //static QPlainTextEdit editWidget();
 
 const QString DEquation::icTmpl(",    %1(0) = ");
@@ -95,6 +98,8 @@ void DEquation::setChildPos()
 
 void DEquation::updateSize()
 {
+    cout << "Geronimoo!!" << endl;
+
     QString IC_ID;
     if (!(items[2]->getText().isEmpty())) {
         IC_ID = items[2]->getText();
