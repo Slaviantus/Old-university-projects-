@@ -7,8 +7,10 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include "matrixitem.h"
-
+#include "iostream"
 #include <QGraphicsTextItem>  // временно
+
+using namespace std;
 
 ModelScene::ModelScene(QObject *parent) :
     QGraphicsScene(parent),
@@ -51,6 +53,7 @@ ModelScene::ModelScene(QObject *parent) :
     deq = static_cast<DEquation *>(equations.last());
     deq->getLeft()->setText("l");
     MatrixItem *matrix = new MatrixItem(commonFont);
+
     deq->getRight()->insertItem(matrix);
 
     updateEquations();

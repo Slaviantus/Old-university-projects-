@@ -13,6 +13,8 @@ public:
      explicit MatrixItem(const QFont &font, QObject *parent = 0);
      void setChildPos() override;
      void updateSize() override;
+     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 private:
      int max_windth_index;
      double max_windth;

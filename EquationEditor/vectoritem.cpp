@@ -87,7 +87,6 @@ void VectorItem::setChildPos()
  */
 void VectorItem::updateSize()
 {
-    cout << "Glory to Arstotzka!!" << endl;
     CommonItem::updateSize();
 
     m_topLeft += QPointF(-10.0, -2.0);
