@@ -38,7 +38,8 @@ SOURCES += \
     poweritem.cpp \
     summa.cpp \
     vectoritem.cpp \
-    matrixitem.cpp
+    matrixitem3x3.cpp \
+    matrixitem2x2.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     poweritem.h \
     summa.h \
     vectoritem.h \
-    matrixitem.h
+    matrixitem3x3.h \
+    matrixitem2x2.h
 
 CONFIG += mobility
 MOBILITY = 

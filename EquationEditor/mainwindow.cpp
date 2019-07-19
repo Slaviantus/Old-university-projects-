@@ -106,6 +106,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actVector3, SIGNAL(triggered()), this, SLOT(insertionCommand()));
     connect(this, SIGNAL(insertionCommandSelected(ModelScene::ItemTypes)), model, SLOT(insertItemWrapper(ModelScene::ItemTypes)));
     connect(actMatrix3, SIGNAL(triggered()), this, SLOT(insertionCommand()));
+    connect(actMatrix2, SIGNAL(triggered()), this, SLOT(insertionCommand()));
     // ***********************************************************************
 
     // панель меню

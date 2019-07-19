@@ -6,11 +6,11 @@
 
 #define MATRIX_PARTS 9
 
-class MatrixItem : public CommonItem
+class MatrixItem3x3 : public CommonItem
 {
     Q_OBJECT
 public:
-     explicit MatrixItem(const QFont &font, QObject *parent = 0);
+     explicit MatrixItem3x3(const QFont &font, QObject *parent = 0);
      void setChildPos() override;
      void updateSize() override;
      void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

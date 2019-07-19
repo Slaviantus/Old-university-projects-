@@ -1,4 +1,4 @@
-#include "matrixitem.h"
+#include "matrixitem2x2.h"
 #include "place.h"
 #include "iostream"
 #include "QFontMetrics"
@@ -6,11 +6,8 @@
 #include "QPainter"
 #include "QSize"
 
-using namespace std;
 
-
-
-MatrixItem::MatrixItem(const QFont &font, QObject *parent) : CommonItem(font, MATRIX_PARTS, parent)
+Matrixitem2x2::Matrixitem2x2(const QFont &font, QObject *parent) : CommonItem(font, MATRIX_PARTS, parent)
 {
     for (int i(0); i<m_iNum; ++i) {                           // создание и настройка типа дочерних элементов - зависит от типа родительского элемента
         items[i] = new Place(font);                                     // создание
@@ -20,7 +17,7 @@ MatrixItem::MatrixItem(const QFont &font, QObject *parent) : CommonItem(font, MA
     setChildPos();
 }
 
-void MatrixItem::setChildPos()
+void Matrixitem2x2::setChildPos()
 {
     items[0]->setPos(0.0, 0.0);
     items[1]->setPos(items[0]->boundingRect().width(), 0.0);
@@ -31,9 +28,9 @@ void MatrixItem::setChildPos()
     items[6]->setPos(0.0, items[3]->pos().y() + items[3]->boundingRect().height());
     items[7]->setPos(items[6]->boundingRect().width(), items[3]->pos().y() + items[3]->boundingRect().height());
     items[8]->setPos(items[7]->pos().x() + items[7]->boundingRect().width(), items[3]->pos().y() + items[3]->boundingRect().height());
- }
+}
 
-void MatrixItem::updateSize()
+void Matrixitem2x2::updateSize()
 {
     CommonItem::updateSize();
     QSize max_size;
@@ -84,10 +81,9 @@ void MatrixItem::updateSize()
         }
     }
     m_sz.setWidth(items[max_index_1]->boundingRect().width() + items[max_index_2]->boundingRect().width() + items[max_index_3]->boundingRect().width() + 12.0);
-
 }
 
-void MatrixItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Matrixitem2x2::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QFontMetrics fm(font);
 
@@ -115,6 +111,4 @@ void MatrixItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->drawLine(QPointF(boundingRect().width()-2.0, boundingRect().bottom()),
                       QPointF(boundingRect().width()-(2.0 + pw), boundingRect().bottom()));
 
-
 }
-

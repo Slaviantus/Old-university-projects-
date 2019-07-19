@@ -6,7 +6,8 @@
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
-#include "matrixitem.h"
+#include "matrixitem3x3.h"
+#include "matrixitem2x2.h"
 #include "iostream"
 #include <QGraphicsTextItem>  // временно
 
@@ -45,16 +46,17 @@ ModelScene::ModelScene(QObject *parent) :
     pwr1->getNextEditablePlace(pwr1->getFirstEditablePlace())->setText("5");
     deq->getRight()->insertItem(pwr1);
 
-   // updateEquations();
-
-    //++++++++++++++++++++++++++++++++++++++++++++++++++
-
     addDEquation();
     deq = static_cast<DEquation *>(equations.last());
     deq->getLeft()->setText("l");
-    MatrixItem *matrix = new MatrixItem(commonFont);
+    MatrixItem3x3 *matrix3x3 = new MatrixItem3x3(commonFont);
+    Matrixitem2x2 *matrix2x2 = new Matrixitem2x2(commonFont);
 
-    deq->getRight()->insertItem(matrix);
+
+    deq->getRight()->insertItem(matrix3x3);
+    deq->getLeft()->insertItem(matrix2x2);
+
+
 
     updateEquations();
 
@@ -234,9 +236,9 @@ CommonItem *ModelScene::getNewItem(const ItemTypes itemType, const QFont font)
     case ITDE:
         break;
     case ITMatrix2:
-        break;
+        return new Matrixitem2x2(font);
     case ITMatrix3:
-        return new MatrixItem(font);
+        return new MatrixItem3x3(font);
     case ITRoundPars:
         break;
     case ITUnaryFunction:
