@@ -16,7 +16,9 @@ public:
      void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-     int max_windth_index;
+     int max_index_1;
+     int max_index_2;
+     int max_index_3;
      double max_windth;
 };
 
