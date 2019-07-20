@@ -36,7 +36,6 @@ void MatrixItem3x3::setChildPos()
 void MatrixItem3x3::updateSize()
 {
     CommonItem::updateSize();
-    QSize max_size;
     m_topLeft += QPointF(-3.0, -33.0);
     m_sz += QSizeF(2*10.0, 4.0);
     items[0]->setY(-33.0);

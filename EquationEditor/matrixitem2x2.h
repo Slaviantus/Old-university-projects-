@@ -4,7 +4,7 @@
 #include "commonitem.h"
 #include "place.h"
 
-#define MATRIX_PARTS 9
+#define MATRIX_PARTS 4
 
 class Matrixitem2x2 : public CommonItem
 {
