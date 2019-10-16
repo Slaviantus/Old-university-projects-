@@ -15,6 +15,8 @@ namespace WindowsFormsApplication2
 
         private OnEquationCreated onequationcreated;
 
+        public EquationsContainer equations = new EquationsContainer();
+
         public Form2(OnEquationCreated onequationcreated)
         {
             this.onequationcreated = onequationcreated;
@@ -30,7 +32,7 @@ namespace WindowsFormsApplication2
             equation.B = Convert.ToInt32(textBox2.Text);
             equation.C = Convert.ToInt32(textBox3.Text);
             Console.WriteLine(equation.A + " " + equation.B + " " + equation.C);
-         
+            equations.Add(equation);
             Close();
         }
 
