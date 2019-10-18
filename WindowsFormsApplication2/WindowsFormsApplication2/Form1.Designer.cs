@@ -104,6 +104,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "MainWindow";
             this.Text = "Equations";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

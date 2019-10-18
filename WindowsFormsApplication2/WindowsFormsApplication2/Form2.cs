@@ -15,7 +15,31 @@ namespace WindowsFormsApplication2
 
         private OnEquationCreated onequationcreated;
 
-        public EquationsContainer equations = new EquationsContainer();
+        private double a, b, c;
+
+        public double A
+        {
+            get
+            {
+                return a;
+            }
+        }
+
+        public double B
+        {
+            get
+            {
+                return b;
+            }
+        }
+
+        public double C
+        {
+            get
+            {
+                return c;
+            }
+        }
 
         public Form2(OnEquationCreated onequationcreated)
         {
@@ -27,12 +51,9 @@ namespace WindowsFormsApplication2
         private void button1_Click(object sender, EventArgs e)
         {
             onequationcreated();
-            Equation equation = new Equation();
-            equation.A = Convert.ToInt32(textBox1.Text);
-            equation.B = Convert.ToInt32(textBox2.Text);
-            equation.C = Convert.ToInt32(textBox3.Text);
-            Console.WriteLine(equation.A + " " + equation.B + " " + equation.C);
-            equations.Add(equation);
+            a = Convert.ToDouble(textBox1.Text);
+            b = Convert.ToDouble(textBox2.Text);
+            c = Convert.ToDouble(textBox3.Text);
             Close();
         }
 

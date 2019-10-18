@@ -74,28 +74,28 @@ namespace WindowsFormsApplication2
 
     }
 
-    
-        interface ILabContainer<T> : System.Collections.Generic.IEnumerable<T>
+
+    interface ILabContainer<T> : System.Collections.Generic.IEnumerable<T>
+    {
+        // Доступ к элементу контейнера по индексу. Выбрасывает исключение, если индекс не верен.
+        T this[int index]
         {
-            // Доступ к элементу контейнера по индексу. Выбрасывает исключение, если индекс не верен.
-            T this[int index]
-            {
-                get;
-                set;
-            }
-            // Свойство числа элементов в контейнере.
-            int Count
-            {
-                get;
-            }
-            // Добавление в контейнер элемента.
-            void Add(T item);
-            // Очистка контейнера.
-            void Clear();
-            // Удаляет элемент из контейнера. Выбрасывает исключение, если индекс не верен.
-            void RemoveAt(int index);
+            get;
+            set;
         }
-    
+        // Свойство числа элементов в контейнере.
+        int Count
+        {
+            get;
+        }
+        // Добавление в контейнер элемента.
+        void Add(T item);
+        // Очистка контейнера.
+        void Clear();
+        // Удаляет элемент из контейнера. Выбрасывает исключение, если индекс не верен.
+        void RemoveAt(int index);
+    }
+
 
     public class EquationsContainer : ILabContainer<Equation>
     {
