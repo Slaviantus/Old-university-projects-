@@ -12,7 +12,8 @@ namespace WindowsFormsApplication2
         private double descriminant;
         private double result1;
         private double result2;
-
+        private bool isDiscriminantNegative;
+        private Achtung achtung;
 
         public double A
         {
@@ -48,24 +49,31 @@ namespace WindowsFormsApplication2
             }
         }
 
+        public bool IsDiscriminantNegative
+        {
+            get
+            {
+                return isDiscriminantNegative;
+            }
+        }
+
         public void SolveEquation()
         {
+            isDiscriminantNegative = false;
             descriminant = Math.Pow(B, 2) - 4 * A * C;
 
             if (descriminant < 0)
             {
-                throw new ArgumentOutOfRangeException("Sorry, we cant solve the equation with negative descriminant");
+                //throw new ArgumentOutOfRangeException("Sorry, we cant solve the equation with negative descriminant");
+                isDiscriminantNegative = true;
+                achtung = new Achtung();
+                achtung.ShowDialog();
             }
 
             result1 = ((-1 * B) + Math.Sqrt(descriminant)) / (2 * A);
             result2 = ((-1 * B) - Math.Sqrt(descriminant)) / (2 * A);
-
-          //  Console.WriteLine("X1: " + result1);
-          //  Console.WriteLine("X2: " + result2);
-
-            //Console.ReadKey();
-
         }
+
         public int CompareTo(Equation other)
         {
             if (A.CompareTo(other.A) != 0)

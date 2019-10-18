@@ -34,8 +34,18 @@ namespace WindowsFormsApplication2
             equation.B = addEquation.B;
             equation.C = addEquation.C;
             equation.SolveEquation();
-            equationArmy.Add(equation);
-            ShowInTable();
+
+            if (!equation.IsDiscriminantNegative)
+            {
+                equationArmy.Add(equation);
+                Console.WriteLine("++++++" + dataGridView1.Rows.Count + "++++++");
+
+                if (dataGridView1.Rows.Count < equationArmy.Count)
+                {
+                    dataGridView1.Rows.Add();
+                }
+                ShowInTable();
+            }
         }
 
         private void ShowInTable()
