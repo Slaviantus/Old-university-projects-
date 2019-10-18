@@ -32,6 +32,22 @@ namespace WindowsFormsApplication2
             set;
         }
 
+        public double Result1
+        {
+            get
+            {
+                return result1;
+            }
+        }
+
+        public double Result2
+        {
+            get
+            {
+                return result2;
+            }
+        }
+
         public void SolveEquation()
         {
             descriminant = Math.Pow(B, 2) - 4 * A * C;
@@ -44,10 +60,10 @@ namespace WindowsFormsApplication2
             result1 = ((-1 * B) + Math.Sqrt(descriminant)) / (2 * A);
             result2 = ((-1 * B) - Math.Sqrt(descriminant)) / (2 * A);
 
-            Console.WriteLine("X1: " + result1);
-            Console.WriteLine("X2: " + result2);
+          //  Console.WriteLine("X1: " + result1);
+          //  Console.WriteLine("X2: " + result2);
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
         }
         public int CompareTo(Equation other)

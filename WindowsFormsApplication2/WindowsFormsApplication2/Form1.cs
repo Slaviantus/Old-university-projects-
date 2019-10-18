@@ -13,15 +13,6 @@ namespace WindowsFormsApplication2
     {
         public EquationsContainer equations;
 
-        /*public EquationsContainer Equations
-        {
-            get
-            {
-                return equations;
-            }
-
-        }*/
-
         private Form2 addEquation;
 
         private EquationsContainer equationArmy;
@@ -42,11 +33,8 @@ namespace WindowsFormsApplication2
             equation.A = addEquation.A;
             equation.B = addEquation.B;
             equation.C = addEquation.C;
+            equation.SolveEquation();
             equationArmy.Add(equation);
-            //Console.WriteLine(equation.A + " " + equation.B + " " + equation.C + "******" + addEquation.A + " " + addEquation.B + " " + addEquation.C);
-            //dataGridView1.RowsAdded();
-            //dataGridView1.Rows.Add();
-            //Console.WriteLine(dataGridView1.Size);
             ShowInTable();
         }
 
@@ -58,6 +46,8 @@ namespace WindowsFormsApplication2
                 dataGridView1.Rows[i].Cells[0].Value = equationArmy[i].A;
                 dataGridView1.Rows[i].Cells[1].Value = equationArmy[i].B;
                 dataGridView1.Rows[i].Cells[2].Value = equationArmy[i].C;
+                dataGridView1.Rows[i].Cells[3].Value = equationArmy[i].Result1;
+                dataGridView1.Rows[i].Cells[4].Value = equationArmy[i].Result2;
             }
         }
 
