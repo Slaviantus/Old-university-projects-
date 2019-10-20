@@ -38,8 +38,6 @@ namespace WindowsFormsApplication2
             if (!equation.IsDiscriminantNegative)
             {
                 equationArmy.Add(equation);
-                Console.WriteLine("++++++" + dataGridView1.Rows.Count + "++++++");
-
                 if (dataGridView1.Rows.Count < equationArmy.Count)
                 {
                     dataGridView1.Rows.Add();
@@ -50,7 +48,6 @@ namespace WindowsFormsApplication2
 
         private void ShowInTable()
         {
-            Console.WriteLine("*******************");
             for (int i = 0; i < equationArmy.Count; i++)
             {
                 dataGridView1.Rows[i].Cells[0].Value = equationArmy[i].A;
@@ -74,6 +71,20 @@ namespace WindowsFormsApplication2
         private void MainWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            if (equationArmy.Count > 0)
+            {
+                equationArmy.RemoveAt(dataGridView1.CurrentRow.Index);
+                Console.WriteLine("()()()()() LIST ()()(()()()");
+                for (int i = 0; i < equationArmy.Count; i++)
+                {
+                    Console.WriteLine(equationArmy[i].A);
+                }
+                ShowInTable();
+            }
         }
     }
 }

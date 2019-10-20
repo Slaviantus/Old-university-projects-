@@ -64,7 +64,6 @@ namespace WindowsFormsApplication2
 
             if (descriminant < 0)
             {
-                //throw new ArgumentOutOfRangeException("Sorry, we cant solve the equation with negative descriminant");
                 isDiscriminantNegative = true;
                 achtung = new Achtung();
                 achtung.ShowDialog();
