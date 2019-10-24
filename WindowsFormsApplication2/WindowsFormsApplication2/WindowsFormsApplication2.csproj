@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Change.Designer.cs">
+      <DependentUpon>Change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exception.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Change.resx">
+      <DependentUpon>Change.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Exception.resx">
       <DependentUpon>Exception.cs</DependentUpon>
     </EmbeddedResource>

@@ -15,6 +15,8 @@ namespace WindowsFormsApplication2
 
         private Form2 addEquation;
 
+        private Change changeEquation;
+
         private EquationsContainer equationArmy;
 
 
@@ -78,13 +80,18 @@ namespace WindowsFormsApplication2
             if (equationArmy.Count > 0)
             {
                 equationArmy.RemoveAt(dataGridView1.CurrentRow.Index);
-                Console.WriteLine("()()()()() LIST ()()(()()()");
-                for (int i = 0; i < equationArmy.Count; i++)
-                {
-                    Console.WriteLine(equationArmy[i].A);
-                }
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
                 ShowInTable();
             }
+       
+        }
+
+        private void change_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.CurrentRow.Index;
+            changeEquation = new Change(equationArmy[index]);
+            changeEquation.ShowDialog();
+
         }
     }
 }

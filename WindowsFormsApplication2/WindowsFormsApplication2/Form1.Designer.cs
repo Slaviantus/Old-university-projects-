@@ -38,6 +38,7 @@
             this.result2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Add = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
+            this.change = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,11 +107,22 @@
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
+            // change
+            // 
+            this.change.Location = new System.Drawing.Point(633, 99);
+            this.change.Name = "change";
+            this.change.Size = new System.Drawing.Size(75, 23);
+            this.change.TabIndex = 3;
+            this.change.Text = "Изменить";
+            this.change.UseVisualStyleBackColor = true;
+            this.change.Click += new System.EventHandler(this.change_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 384);
+            this.Controls.Add(this.change);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.dataGridView1);
@@ -132,6 +144,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn result1;
         private System.Windows.Forms.DataGridViewTextBoxColumn result2;
         private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.Button change;
     }
 }
 
