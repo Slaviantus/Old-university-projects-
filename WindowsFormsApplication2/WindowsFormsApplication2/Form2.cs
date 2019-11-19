@@ -44,16 +44,18 @@ namespace WindowsFormsApplication2
         public Form2(OnEquationCreated onequationcreated)
         {
             this.onequationcreated = onequationcreated;
-
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             onequationcreated();
-            a = Convert.ToDouble(textBox1.Text);
-            b = Convert.ToDouble(textBox2.Text);
-            c = Convert.ToDouble(textBox3.Text);
+            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Text.Length != 0)
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                b = Convert.ToDouble(textBox2.Text);
+                c = Convert.ToDouble(textBox3.Text);
+            }
             Close();
         }
 

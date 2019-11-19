@@ -36,15 +36,17 @@ namespace WindowsFormsApplication2
             equation.B = addEquation.B;
             equation.C = addEquation.C;
             equation.SolveEquation();
-
-            if (!equation.IsDiscriminantNegative)
+            if (equation.A != 0 && equation.B != 0 && equation.C != 0)
             {
-                equationArmy.Add(equation);
-                if (dataGridView1.Rows.Count < equationArmy.Count)
+                if (!equation.IsDiscriminantNegative) 
                 {
-                    dataGridView1.Rows.Add();
+                    equationArmy.Add(equation);
+                    if (dataGridView1.Rows.Count < equationArmy.Count)
+                    {
+                        dataGridView1.Rows.Add();
+                    }
+                    ShowInTable();
                 }
-                ShowInTable();
             }
         }
 
@@ -81,17 +83,40 @@ namespace WindowsFormsApplication2
             {
                 equationArmy.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-                ShowInTable();
+                //ShowInTable();
             }
        
         }
 
         private void change_Click(object sender, EventArgs e)
         {
-            int index = dataGridView1.CurrentRow.Index;
-            changeEquation = new Change(equationArmy[index]);
-            changeEquation.ShowDialog();
-
+            if (equationArmy.Count > 0)
+            {
+                int index = dataGridView1.CurrentRow.Index;
+                changeEquation = new Change(equationArmy[index]);
+                changeEquation.ShowDialog();
+                double cashA, cashB, cashC;
+                cashA = equationArmy[index].A;
+                cashB = equationArmy[index].B;
+                cashC = equationArmy[index].C;
+                equationArmy[index].A = changeEquation.A;
+                equationArmy[index].B = changeEquation.B;
+                equationArmy[index].C = changeEquation.C;
+                equationArmy[index].SolveEquation();
+                if ((equationArmy[index].IsDiscriminantNegative) || (equationArmy[index].A == 0 && equationArmy[index].B == 0 && equationArmy[index].C == 0))
+                {
+                    equationArmy[index].A = cashA;
+                    equationArmy[index].B = cashB;
+                    equationArmy[index].C = cashC;
+                    equationArmy[index].SolveEquation();
+                    ShowInTable();
+                }
+                else
+                {
+                    equationArmy[index].SolveEquation();
+                    ShowInTable();
+                }
+            }
         }
     }
 }
